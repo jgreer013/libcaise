@@ -36,12 +36,14 @@ dr = DataReader(dir + fn)
 
 c = dr.getCols("PercentMalicious")
 
+# Regression
 plt.subplot(1,2,1)
 plt.hist(c.values, bins=10, histtype="step")
 plt.title("General Distribution")
 plt.xlabel("Maliciousness")
 plt.ylabel("Count")
 
+# What if we do binary classification?
 plt.subplot(1,2,2)
 plt.hist(c.values, bins=2, histtype="step")
 plt.title("Binary Distribution")
