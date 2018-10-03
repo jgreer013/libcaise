@@ -1,5 +1,6 @@
 import pandas
 import os
+import numpy as np
 from matplotlib import pyplot as plt
 
 class DataReader:
@@ -29,11 +30,21 @@ class DataReader:
     def getHeaders(self):
         return self.data.columns.values.tolist()
 
-dir = "/home/mindlab013/repos/DyMal/data/uci_dynamic/"
+dir = os.getcwd() + "/data/uci_dynamic/"
 fn = "all_data.csv"
 dr = DataReader(dir + fn)
 
-c = dr.getCols(["PercentMalicious"])
-plt.hist(c)
-plt.title("Distribution of classes")
+c = dr.getCols("PercentMalicious")
+
+plt.subplot(1,2,1)
+plt.hist(c.values, bins=10, histtype="step")
+plt.title("General Distribution")
+plt.xlabel("Maliciousness")
+plt.ylabel("Count")
+
+plt.subplot(1,2,2)
+plt.hist(c.values, bins=2, histtype="step")
+plt.title("Binary Distribution")
+plt.xlabel("Maliciousness")
+plt.ylabel("Count")
 plt.show()

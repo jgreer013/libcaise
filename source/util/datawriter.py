@@ -8,8 +8,9 @@ import os
 import csv
 
 WORKING_PATH = os.getcwd()
+print(WORKING_PATH)
 filename = "feature_desc.json"
-dir = "/home/mindlab013/repos/DyMal/data/uci_dynamic/"
+dir = WORKING_PATH + "/data/uci_dynamic/"
 months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
 years = ["2010", "2011", "2012", "2013", "2014"]
 first_month = "11"
@@ -38,11 +39,12 @@ LEN = len(features)
 
 # Feature 0 is year, 1 is month, 2 is order, 3 is maliciousness
 def get_data(dir, year, month):
+    ex_f = 4
     try:
         txt_filename = dir + year + "-" + m + ".txt"
         f = open(txt_filename, 'r')
         lines = f.read().splitlines()
-        total = [["0" for i in range(LEN+4)] for j in range(len(lines))]
+        total = [["0" for i in range(LEN+ex_f)] for j in range(len(lines))]
         for line in range(len(lines)):
                 l = lines[line]
                 split_line = l.split(" ")
@@ -56,7 +58,7 @@ def get_data(dir, year, month):
                     else:
                         if len(s) > 0:
                             k, v = s.split(":")
-                            total[line][int(k)+3] = v
+                            total[line][int(k)+ex_f] = v
         f.close()
         return total
     except FileNotFoundError as fnf_error:
