@@ -1,5 +1,6 @@
-// C program to implement recursive Binary Search
 // Credit To GeeksForGeeks website for implementation
+
+// C program to implement recursive Binary Search
 #include <stdio.h>
 
 // A recursive binary search function. It returns

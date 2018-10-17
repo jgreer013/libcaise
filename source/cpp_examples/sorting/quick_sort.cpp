@@ -3,6 +3,7 @@
 
 #include<stdio.h>
 #include<stdlib.h>
+#include<iostream>
 
 // Function to swap numbers
 void swap(int *a, int *b){
@@ -58,7 +59,7 @@ int main(){
     quickSort(arr, 0, n-1);
 
         for(int i = 0; i < n; i++){
-            cout << arr[i] << " ";
+            std::cout << arr[i] << " ";
     }
 
     return 0;

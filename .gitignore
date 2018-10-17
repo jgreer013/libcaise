@@ -106,3 +106,4 @@ venv.bak/
 # data
 *.csv
 *.DS_Store
+*.b
