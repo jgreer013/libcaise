@@ -8,7 +8,6 @@ import os
 import csv
 
 WORKING_PATH = os.getcwd()
-print(WORKING_PATH)
 filename = "feature_desc.json"
 dir = WORKING_PATH + "/data/uci_dynamic/"
 months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]

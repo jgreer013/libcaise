@@ -23,7 +23,6 @@ class FileLoader:
         b = bd()
         for f in self.filenames:
             try:
-                print(os.listdir())
                 base = os.path.basename(f)
                 dir = os.path.dirname(f)
                 df = DataFile(dir, base)
