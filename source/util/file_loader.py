@@ -1,4 +1,4 @@
-from .binary_data_reader import BDataReader as bd
+from .data_reader import DataReader as bd
 from .data_file import DataFile
 import os
 
@@ -18,7 +18,7 @@ class FileLoader:
     def getFile(self, ind):
         return self.filenames.get(ind)
 
-    def getData(self):
+    def getData(self, type=bool):
         d = []
         b = bd()
         for f in self.filenames:
@@ -26,7 +26,7 @@ class FileLoader:
                 base = os.path.basename(f)
                 dir = os.path.dirname(f)
                 df = DataFile(dir, base)
-                data = b.readFile(df)
+                data = b.readFile(df, type=type)
                 d.append([df, data])
             except:
                 print("Failure in reading file " + f)

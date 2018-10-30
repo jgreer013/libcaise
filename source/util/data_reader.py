@@ -1,9 +1,9 @@
 import numpy as np
 from .data_file import DataFile as DF
 
-class BDataReader:
+class DataReader:
     def __init__(self, data_file=None, dtype=bool):
-        self.type=dtype
+        self.type = dtype
         self.file = data_file
 
     def readFile(self, data_file=None, type=bool):
@@ -13,7 +13,10 @@ class BDataReader:
         self.type = type
 
         try:
-            return np.fromfile(self.file.getFullName(), self.type)
-        except IOError as e:
+            if self.type == np.dtype('unicode_'):
+                return np.loadtxt(self.file.getFullName(), dtype=self.type)
+            else:
+                return np.fromfile(self.file.getFullName(), dtype=self.type)
+        except Exception as e:
             print(e)
             return None
