@@ -1,0 +1,247 @@
+<_start>:
+xor    %ebp,%ebp
+mov    %rdx,%r9
+pop    %rsi
+mov    %rsp,%rdx
+and    $0xfffffffffffffff0,%rsp
+push   %rax
+push   %rsp
+lea    0x33a(%rip),%r8        
+lea    0x2c3(%rip),%rcx        
+lea    0x224(%rip),%rdi        
+callq  *0x200986(%rip)        
+hlt    
+nopl   0x0(%rax,%rax,1)
+<deregister_tm_clones>:
+lea    0x2009a9(%rip),%rdi        
+push   %rbp
+lea    0x2009a1(%rip),%rax        
+cmp    %rdi,%rax
+mov    %rsp,%rbp
+je     690 <deregister_tm_clones+0x30>
+mov    0x20095a(%rip),%rax        
+test   %rax,%rax
+je     690 <deregister_tm_clones+0x30>
+pop    %rbp
+jmpq   *%rax
+nopw   %cs:0x0(%rax,%rax,1)
+pop    %rbp
+retq   
+nopl   0x0(%rax)
+nopw   %cs:0x0(%rax,%rax,1)
+<register_tm_clones>:
+lea    0x200969(%rip),%rdi        
+lea    0x200962(%rip),%rsi        
+push   %rbp
+sub    %rdi,%rsi
+mov    %rsp,%rbp
+sar    $0x3,%rsi
+mov    %rsi,%rax
+shr    $0x3f,%rax
+add    %rax,%rsi
+sar    %rsi
+je     6e0 <register_tm_clones+0x40>
+mov    0x200921(%rip),%rax        
+test   %rax,%rax
+je     6e0 <register_tm_clones+0x40>
+pop    %rbp
+jmpq   *%rax
+nopw   0x0(%rax,%rax,1)
+pop    %rbp
+retq   
+nopl   0x0(%rax)
+nopw   %cs:0x0(%rax,%rax,1)
+<__do_global_dtors_aux>:
+cmpb   $0x0,0x200919(%rip)        
+jne    728 <__do_global_dtors_aux+0x38>
+cmpq   $0x0,0x2008f7(%rip)        
+push   %rbp
+mov    %rsp,%rbp
+je     713 <__do_global_dtors_aux+0x23>
+mov    0x2008fa(%rip),%rdi        
+callq  620 <__cxa_finalize@plt>
+callq  660 <deregister_tm_clones>
+movb   $0x1,0x2008f1(%rip)        
+pop    %rbp
+retq   
+nopl   0x0(%rax)
+repz retq 
+nopw   0x0(%rax,%rax,1)
+<frame_dummy>:
+push   %rbp
+mov    %rsp,%rbp
+pop    %rbp
+jmpq   6a0 <register_tm_clones>
+<_Z4swapPiS_>:
+push   %rbp
+mov    %rsp,%rbp
+mov    %rdi,-0x18(%rbp)
+mov    %rsi,-0x20(%rbp)
+mov    -0x18(%rbp),%rax
+mov    (%rax),%eax
+mov    %eax,-0x4(%rbp)
+mov    -0x20(%rbp),%rax
+mov    (%rax),%edx
+mov    -0x18(%rbp),%rax
+mov    %edx,(%rax)
+mov    -0x20(%rbp),%rax
+mov    -0x4(%rbp),%edx
+mov    %edx,(%rax)
+nop
+pop    %rbp
+retq   
+<_Z13selectionSortPii>:
+push   %rbp
+mov    %rsp,%rbp
+sub    $0x20,%rsp
+mov    %rdi,-0x18(%rbp)
+mov    %esi,-0x1c(%rbp)
+movl   $0x0,-0xc(%rbp)
+mov    -0x1c(%rbp),%eax
+sub    $0x1,%eax
+cmp    %eax,-0xc(%rbp)
+jge    81b <_Z13selectionSortPii+0xb4>
+mov    -0xc(%rbp),%eax
+mov    %eax,-0x4(%rbp)
+mov    -0xc(%rbp),%eax
+add    $0x1,%eax
+mov    %eax,-0x8(%rbp)
+mov    -0x8(%rbp),%eax
+cmp    -0x1c(%rbp),%eax
+jge    7df <_Z13selectionSortPii+0x78>
+mov    -0x8(%rbp),%eax
+cltq   
+lea    0x0(,%rax,4),%rdx
+mov    -0x18(%rbp),%rax
+add    %rdx,%rax
+mov    (%rax),%edx
+mov    -0x4(%rbp),%eax
+cltq   
+lea    0x0(,%rax,4),%rcx
+mov    -0x18(%rbp),%rax
+add    %rcx,%rax
+mov    (%rax),%eax
+cmp    %eax,%edx
+jge    7d9 <_Z13selectionSortPii+0x72>
+mov    -0x8(%rbp),%eax
+mov    %eax,-0x4(%rbp)
+addl   $0x1,-0x8(%rbp)
+jmp    79b <_Z13selectionSortPii+0x34>
+mov    -0xc(%rbp),%eax
+cltq   
+lea    0x0(,%rax,4),%rdx
+mov    -0x18(%rbp),%rax
+add    %rax,%rdx
+mov    -0x4(%rbp),%eax
+cltq   
+lea    0x0(,%rax,4),%rcx
+mov    -0x18(%rbp),%rax
+add    %rcx,%rax
+mov    %rdx,%rsi
+mov    %rax,%rdi
+callq  73a <_Z4swapPiS_>
+addl   $0x1,-0xc(%rbp)
+jmpq   77d <_Z13selectionSortPii+0x16>
+nop
+leaveq 
+retq   
+<_Z10printArrayPii>:
+push   %rbp
+mov    %rsp,%rbp
+sub    $0x20,%rsp
+mov    %rdi,-0x18(%rbp)
+mov    %esi,-0x1c(%rbp)
+movl   $0x0,-0x4(%rbp)
+mov    -0x4(%rbp),%eax
+cmp    -0x1c(%rbp),%eax
+jge    86b <_Z10printArrayPii+0x4d>
+mov    -0x4(%rbp),%eax
+cltq   
+lea    0x0(,%rax,4),%rdx
+mov    -0x18(%rbp),%rax
+add    %rdx,%rax
+mov    (%rax),%eax
+mov    %eax,%esi
+lea    0x139(%rip),%rdi        
+mov    $0x0,%eax
+callq  610 <printf@plt>
+addl   $0x1,-0x4(%rbp)
+jmp    834 <_Z10printArrayPii+0x16>
+mov    $0xa,%edi
+callq  5e0 <putchar@plt>
+nop
+leaveq 
+retq   
+<main>:
+push   %rbp
+mov    %rsp,%rbp
+sub    $0x30,%rsp
+mov    %fs:0x28,%rax
+mov    %rax,-0x8(%rbp)
+xor    %eax,%eax
+movl   $0x40,-0x20(%rbp)
+movl   $0x19,-0x1c(%rbp)
+movl   $0xc,-0x18(%rbp)
+movl   $0x16,-0x14(%rbp)
+movl   $0xb,-0x10(%rbp)
+movl   $0x5,-0x24(%rbp)
+mov    -0x24(%rbp),%edx
+lea    -0x20(%rbp),%rax
+mov    %edx,%esi
+mov    %rax,%rdi
+callq  767 <_Z13selectionSortPii>
+lea    0xc7(%rip),%rdi        
+callq  5f0 <puts@plt>
+mov    -0x24(%rbp),%edx
+lea    -0x20(%rbp),%rax
+mov    %edx,%esi
+mov    %rax,%rdi
+callq  81e <_Z10printArrayPii>
+mov    $0x0,%eax
+mov    -0x8(%rbp),%rcx
+xor    %fs:0x28,%rcx
+je     900 <main+0x88>
+callq  600 <__stack_chk_fail@plt>
+leaveq 
+retq   
+nopw   %cs:0x0(%rax,%rax,1)
+nopl   0x0(%rax)
+<__libc_csu_init>:
+push   %r15
+push   %r14
+mov    %rdx,%r15
+push   %r13
+push   %r12
+lea    0x20047e(%rip),%r12        
+push   %rbp
+lea    0x20047e(%rip),%rbp        
+push   %rbx
+mov    %edi,%r13d
+mov    %rsi,%r14
+sub    %r12,%rbp
+sub    $0x8,%rsp
+sar    $0x3,%rbp
+callq  5b8 <_init>
+test   %rbp,%rbp
+je     966 <__libc_csu_init+0x56>
+xor    %ebx,%ebx
+nopl   0x0(%rax,%rax,1)
+mov    %r15,%rdx
+mov    %r14,%rsi
+mov    %r13d,%edi
+callq  *(%r12,%rbx,8)
+add    $0x1,%rbx
+cmp    %rbx,%rbp
+jne    950 <__libc_csu_init+0x40>
+add    $0x8,%rsp
+pop    %rbx
+pop    %rbp
+pop    %r12
+pop    %r13
+pop    %r14
+pop    %r15
+retq   
+nop
+nopw   %cs:0x0(%rax,%rax,1)
+<__libc_csu_fini>:
+repz retq 
