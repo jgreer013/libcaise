@@ -1,6 +1,7 @@
 from util.file_loader import FileLoader
 from pandas import DataFrame
 from matplotlib import pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 import os
 import numpy as np
 import seaborn as sns
@@ -23,22 +24,37 @@ def main():
         sentences.append(list(data[1]))
 
     instr = sorted(list(uniques))
-    model = Word2Vec(sentences, window=2, workers=4)
-    vocab = list(model.wv.vocab)
-    X = model[vocab]
-    tsne = TSNE(n_components=2)
-    X_tsne = tsne.fit_transform(X)
+    sizes = [300]
+    windows = [3]
+    perplexity = [5]
+    learning_rate = [100, 200, 500, 1000, 5000, 100000]
+    for size in sizes:
+        for window in windows:
+            for p in perplexity:
+                for lr in learning_rate:
+                    model = Word2Vec(sentences, size=size, window=window, workers=4, sg=0)
+                    vocab = list(model.wv.vocab)
+                    X = model[vocab]
+                    tsne = TSNE(n_components=2, perplexity=p, n_iter=10000, method='exact', learning_rate=lr, init='pca')
+                    X_tsne = tsne.fit_transform(X)
 
-    df = DataFrame(X_tsne, index=vocab, columns=['x','y'])
+                    df = DataFrame(X_tsne, index=vocab, columns=['x','y'])
 
-    fig = plt.figure()
-    ax = fig.add_subplot(1,1,1)
-    ax.scatter(df['x'], df['y'])
+                    fig = plt.figure()
+                    ax = fig.add_subplot(1,1,1)
+                    ax.scatter(df['x'], df['y'])
 
-    for word, pos in df.iterrows():
-        ax.annotate(word, pos)
+                    for word, pos in df.iterrows():
 
-    plt.show()
+                        ax.annotate(s=word, xy=(pos.x, pos.y))
+
+                    title = "Size " + str(size) + ", Window " + str(window) + ", Perplexity " + str(p) + ", Learning Rate " + str(lr)
+
+                    ax.set_title(title)
+                    plt.savefig(title + ".png")
+                    plt.close()
+                    print(tsne.n_iter_)
+
 
 
 main()
