@@ -2,7 +2,7 @@ from util.file_loader import FileLoader
 from pandas import DataFrame
 import os
 import numpy as np
-import guidedlda
+import guidedlda as gl
 
 def main():
     fl = FileLoader()
@@ -15,9 +15,29 @@ def main():
 
     d = fl.getData(type=np.dtype('unicode_'))
     X, vocab, word_id = construct_x(d)
-    print(x)
+    print(X.shape)
     print(vocab)
     print(word_id)
+    n_topics = 20
+    model = gl.GuidedLDA(n_topics=n_topics, n_iter=500, random_state=7, refresh=20, alpha=0.1, eta=0.2)
+    model.fit(X)
+    topic_word = model.topic_word_
+    n_top_words = 3
+    for i, topic_dist in enumerate(topic_word):
+        topic_words = np.array(vocab)[np.argsort(topic_dist)][:-(n_top_words+1):-1]
+        print('Topic {}: {}'.format(i, ' '.join(topic_words)))
+        print(np.sort(topic_dist)[:-(n_top_words+1):-1])
+
+    doc_topic = model.transform(X)
+    n_top_topics = 3
+    for i in range(doc_topic.shape[0]):
+        print("Document: " + d[i][0].getFilename())
+        print("top topics: {} Document: {}".format(" ".join([str(ind) for ind in [np.argsort(doc_topic[i])[:-(n_top_topics+1):-1]]]),','.join(np.array(vocab)[list(reversed(X[i,:].argsort()))[0:5]])))
+        print(np.sort(doc_topic[i])[:-(n_top_topics+1):-1])
+        print(sum(np.sort(doc_topic[i])[:-(n_top_topics+1):-1]))
+        print(" ")
+
+
 
 
 def construct_x(d):
@@ -27,23 +47,24 @@ def construct_x(d):
         uni.update(data[1])
         docs.append(data[1])
     vocab = sorted(list(uni))
-    word_id = dict((w, id) for id, w in enumerate(vocab))
-    X = np.zeros(len(d), len(vocab))
+    word_to_id = dict((w, id) for id, w in enumerate(vocab))
+    X = np.zeros(shape=(len(d), len(vocab)), dtype='int64')
     for r in range(len(X)):
         counts = {}
         doc = docs[r]
         for w in doc:
-            if w in counts:
-                counts[w] += 1
+            wid = word_to_id[w]
+            if wid in counts:
+                counts[wid] += 1
             else:
-                counts[w] = 1
+                counts[wid] = 1
 
         for c in range(len(vocab)):
-            if word_id[c] in counts:
-                X[r][c] = counts[word_id[c]]
+            if word_to_id[vocab[c]] in counts:
+                X[r][c] = counts[c]
             else:
                 X[r][c] = 0
 
-    return X, vocab, word_id
+    return X, vocab, word_to_id
 
 main()
