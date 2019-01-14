@@ -26,7 +26,7 @@ def main():
     instr = sorted(list(uniques))
     sizes = [300]
     windows = [3]
-    perplexity = [5]
+    perplexity = [1]
     learning_rate = [100, 200, 500, 1000, 5000, 100000]
     for size in sizes:
         for window in windows:

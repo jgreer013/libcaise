@@ -1,5 +1,6 @@
 from util.file_loader import FileLoader
 from pandas import DataFrame
+from get_ngrams import get_ngrams
 import os
 import numpy as np
 import guidedlda as gl

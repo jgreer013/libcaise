@@ -1,6 +1,6 @@
 s1="((?<= \t)([^#\n ]*)( *)([^#\n]*))|((?=.)<(.*)>:)"
 s2="((?<= \t)([^#\n ]*))"
-for f in ./bin/*.b
+for f in ./byteweight/*
 do
   b=$(basename "$f")
   f2=${b::${#b}-2}
