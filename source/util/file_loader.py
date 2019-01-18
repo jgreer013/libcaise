@@ -3,9 +3,10 @@ from .data_file import DataFile
 import os
 
 class FileLoader:
-    def __init__(self, use_clust = False):
+    def __init__(self, use_clust = False, clust_name = "clusters.txt"):
         self.filenames = []
         self.use_clust = use_clust
+        self.clust_name = clust_name
         if use_clust:
             self.key, self.clusters = self.loadClusters()
 
@@ -22,7 +23,7 @@ class FileLoader:
         return self.filenames.get(ind)
 
     def loadClusters(self):
-        fn = "clusters.txt"
+        fn = self.clust_name
         k = {}
         c = {}
         with open(fn, 'r') as f:
@@ -41,6 +42,7 @@ class FileLoader:
     def getData(self, type=bool):
         d = []
         b = bd()
+        print("Number of files: " + str(len(self.filenames)))
         for f in self.filenames:
             base = os.path.basename(f)
             dir = os.path.dirname(f)

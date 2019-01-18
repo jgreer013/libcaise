@@ -7,12 +7,12 @@ import numpy as np
 
 def main():
     dir = "source/cpp_examples/assembly/"
-    d, keys, clusters = get_ngrams(dir, n=5)
+    d, keys, clusters = get_ngrams(dir, n=1)
 
     X, vocab, word_id = construct_corpus(d)
 
 
-    n_samples = 500       # no of iterations for the sampler
+    n_samples = 1000       # no of iterations for the sampler
     alpha = 10.0           # smoothing over level distributions/
     gamma = 1.0           # CRP smoothing parameter; number of imaginary customers at next, as yet unused table
     eta = 0.1             # smoothing over topic-word distributions

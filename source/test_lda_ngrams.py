@@ -7,7 +7,8 @@ import guidedlda as gl
 
 def main():
     dir = "source/cpp_examples/assembly/"
-    d, keys, clusters = get_ngrams(dir, n=1)
+    d, keys, clusters = get_ngrams(dir, n=5)
+    print(len(d))
 
     X, vocab, word_id = construct_x(d)
     print(len(clusters.keys()))
