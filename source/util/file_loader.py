@@ -29,6 +29,7 @@ class FileLoader:
         with open(fn, 'r') as f:
             for _, line in enumerate(f):
                 term, clus = line.strip().split(',')
+                clus = int(clus)
                 k[term] = clus
 
                 if clus not in c:
