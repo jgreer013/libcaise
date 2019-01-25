@@ -5,7 +5,6 @@ from gensim.models import LdaMulticore
 import os
 import gensim
 import numpy as np
-import guidedlda as gl
 
 def main():
     fn = "assembly"
