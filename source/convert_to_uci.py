@@ -9,7 +9,7 @@ import numpy as np
 def main():
     fn = "assembly"
     dir = "source/cpp_examples/assembly/"
-    d, keys, clusters = get_ngrams(dir, n=5)
+    d, keys, clusters = get_ngrams(dir, n=8)
     print(len(d))
 
     X, vocab, word_id = construct_x(d)
@@ -17,11 +17,11 @@ def main():
     for w in word_id:
         id2word[word_id[w]] = w
 
-    with open("vocab." + fn + ".txt", 'w') as f:
+    with open("vocab" + str(n) + "." + fn + ".txt", 'w') as f:
         for id in id2word:
             f.write(id2word[id].replace(" ","_") + "\n")
 
-    with open("docword." + fn + ".txt", 'w') as f:
+    with open("docword" + str(n) + "." + fn + ".txt", 'w') as f:
         f.write(str(len(d)) + "\n")
         f.write(str(len(vocab)) + "\n")
         f.write(str(np.count_nonzero(X)) + "\n")
