@@ -9,7 +9,8 @@ import numpy as np
 def main():
     fn = "assembly"
     dir = "source/cpp_examples/assembly/"
-    d, keys, clusters = get_ngrams(dir, n=8)
+    n = 8
+    d, keys, clusters = get_ngrams(dir, n=n)
     print(len(d))
 
     X, vocab, word_id = construct_x(d)
