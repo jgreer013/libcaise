@@ -8,8 +8,8 @@ def get_top_topics(n, dir, fn):
         for line in f:
             topics = {}
             line = line.strip().split(" ")
-            if len(line) > n:
-                doc = int(line[0])
+            if len(line) > 1:
+                doc = line[0]
                 for pair in line[2:]:
                     topic, weight = pair.split(":")
                     weight = int(weight)
@@ -36,7 +36,7 @@ def get_top_terms(n, dir, fn):
     for topic in topic_terms:
         terms = topic_terms[topic]
         terms = sorted(terms, key=lambda x: x[1], reverse=True)[:n]
-        topic_top_terms[topic] = [x[0] for x in terms]
+        topic_top_terms[topic] = terms
 
     return topic_top_terms
 
@@ -81,19 +81,19 @@ def get_clusters():
     return clus
 
 def print_tops(doc, top_topics, top_terms, term_dict, doc_names, pterms=True):
-    doc_top = top_topics[doc]
+    doc_top = top_topics[str(doc)]
     print(doc_names[int(doc)], "Top Topics:", doc_top)
     if pterms:
         for top in doc_top:
-            print(top, [term_dict[x] for x in top_terms[top]])
+            print(top, [(term_dict[x[0]], x[1]) for x in top_terms[top]])
     print()
 
 
 n, m = 5, 3
-dir = "./data/LightLDA/"
+dir = "./data/LightLDA/assembly8/"
 fn_top = "doc_topic.0"
 fn_term = "server_0_table_0.model"
-fn_dict = "vocab.assembly.txt"
+fn_dict = "vocab.assembly8.txt"
 tops = get_top_topics(n, dir, fn_top)
 terms = get_top_terms(m, dir, fn_term)
 term_dict = get_term_dict(dir, fn_dict)
@@ -106,4 +106,22 @@ for i in range(len(docnames)):
         search_sort.append(i)
 
 for i in sorted(search_sort, key=lambda x: "sort" in docnames[x]):
-    print_tops(i, tops, terms, term_dict, docnames, pterms=True)
+    print_tops(i, tops, terms, term_dict, docnames, pterms=1)
+
+bins = [[] for i in range(100)]
+for i in range(len(docnames)):
+    top_topics = tops[str(i)]
+    bins[int(top_topics[0])].append(docnames[i])
+    """
+    for j in range(len(bins)):
+        if str(j) in top_topics:
+            bins[j].append(docnames[i])
+    """
+
+"""
+for b in range(len(bins)):
+    print(b)
+    for f in bins[b]:
+        print(f)
+    print()
+"""

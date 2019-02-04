@@ -61,7 +61,7 @@ def main():
             print(c, clusters[c])
 
     for f in features:
-        print(f, features[f])
+        print(features[f], f)
 
 
 main()

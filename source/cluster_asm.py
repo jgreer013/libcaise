@@ -71,12 +71,14 @@ def main():
     print(len(clusters))
     print(len(set(clusters)))
 
+    """
     f = open("clusters_full.txt", 'w')
     for i in range(len(clusters)):
         term = vocab[i]
         clus = str(clusters[i])
         f.write(term + "," + clus + "\n")
     f.close()
+    """
 
 
 
