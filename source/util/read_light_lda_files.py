@@ -14,7 +14,7 @@ def get_top_topics(n, dir, fn):
                     topic, weight = pair.split(":")
                     weight = int(weight)
                     topics[topic] = weight
-                doc_top_topics[doc] = sorted(topics.keys(), key=lambda x: topics[x], reverse=True)[:n]
+                doc_top_topics[doc] = [(top, topics[top]) for top in sorted(topics.keys(), key=lambda x: topics[x], reverse=True)[:n]]
     return doc_top_topics
 
 def get_top_terms(n, dir, fn):
@@ -85,12 +85,13 @@ def print_tops(doc, top_topics, top_terms, term_dict, doc_names, pterms=True):
     print(doc_names[int(doc)], "Top Topics:", doc_top)
     if pterms:
         for top in doc_top:
-            print(top, [(term_dict[x[0]], x[1]) for x in top_terms[top]])
+            t = top[0]
+            print(t, [(term_dict[x[0]], x[1]) for x in top_terms[t]])
     print()
 
 
 n, m = 5, 3
-dir = "./data/LightLDA/assembly8/"
+dir = "./data/LightLDA/assembly8_low_ab_2/"
 fn_top = "doc_topic.0"
 fn_term = "server_0_table_0.model"
 fn_dict = "vocab.assembly8.txt"
@@ -108,17 +109,13 @@ for i in range(len(docnames)):
 for i in sorted(search_sort, key=lambda x: "sort" in docnames[x]):
     print_tops(i, tops, terms, term_dict, docnames, pterms=1)
 
-bins = [[] for i in range(100)]
+"""
+bins = [[] for i in range(len(terms))]
 for i in range(len(docnames)):
     top_topics = tops[str(i)]
-    bins[int(top_topics[0])].append(docnames[i])
-    """
-    for j in range(len(bins)):
-        if str(j) in top_topics:
-            bins[j].append(docnames[i])
-    """
+    bins[int(top_topics[0][0])].append(docnames[i])
 
-"""
+
 for b in range(len(bins)):
     print(b)
     for f in bins[b]:
