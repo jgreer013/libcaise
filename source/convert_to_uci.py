@@ -12,6 +12,13 @@ def main():
     n = 8
     d, keys, clusters = get_ngrams(dir, n=n)
     print(len(d))
+    with open("docs" + str(n) + "." + fn + ".txt", 'w') as f:
+        for i in range(len(d)):
+            doc = d[i][1]
+            f.write(" ".join(["_".join(x.split(" ")) for x in doc]))
+            f.write("\n")
+
+    return
 
     X, vocab, word_id = construct_x(d)
     id2word = {}
