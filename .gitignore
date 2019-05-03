@@ -109,3 +109,5 @@ venv.bak/
 *.ova
 *signature
 *.obj
+docs8.assembly.txt
+docword8.assembly.txt
