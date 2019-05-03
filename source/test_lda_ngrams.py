@@ -14,26 +14,8 @@ import pyLDAvis
 import pyLDAvis.sklearn
 import matplotlib.pyplot as plt
 
-def main2():
-    dir = "source/cpp_examples/assembly/"
-    d, keys, clusters = get_ngrams(dir, n=8)
-    print(len(d))
-
-    docs = []
-    for doc in d:
-        if "search" in doc[0].getFilename() or "sort" in doc[0].getFilename():
-            docs.append(" ".join(["_".join(x.split(" ")) for x in doc[1]]))
-
-    vectorize = CountVectorizer(analyzer='word', min_df=1)
-    dvec = vectorize.fit_transform(docs)
-
-    lda_model = LatentDirichletAllocation(n_topics=100, max_iter=100, learning_method='online', random_state=100, batch_size=128, evaluate_every = 5,n_jobs = -1)
-    lda_output = lda_model.fit_transform(dvec)
-
-    print(lda_model)
-
 def main():
-    dir = "source/cpp_examples/assembly/"
+    dir = "source/cpp_examples/dynamic_only/"
     d, keys, clusters = get_ngrams(dir, n=8)
     print(len(d))
 
@@ -51,12 +33,15 @@ def main():
         id2word[word_id[w]] = w
 
     n_topics = 13
+    #n_topics = 23
     corpus = gensim.matutils.Dense2Corpus(X)
     print('Corpus Done')
     #model = LdaMulticore(corpus, id2word=id2word, workers=3, passes=100, alpha=0.1, eta=0.1)
     # low alpha is few words per topic
     # low eta is few topics per document
-    model = gl.GuidedLDA(n_topics=n_topics, n_iter=100, random_state=7, refresh=20, alpha=0.00000001, eta=0.1)
+    al = 0.00000001
+    #al = 0.1
+    model = gl.GuidedLDA(n_topics=n_topics, n_iter=100, random_state=7, refresh=20, alpha=al, eta=0.1)
     model.fit(X)
     topic_word = model.topic_word_
     #topic_word = model.get_topics()
@@ -127,6 +112,8 @@ def convert_clust_to_term(gram, clust):
         t = int(terms[i])
         if len(clust[t]) == 1:
             terms[i] = clust[t][0]
+        elif len(clust[t]) == 2:
+            terms[i] = "/".join(clust[t][:2])
     return " ".join(terms)
 
 main()

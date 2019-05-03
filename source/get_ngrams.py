@@ -14,11 +14,11 @@ class Ngram_data:
 
 def get_ngrams(dir, n=3):
     try:
-        with open("ngram_pickle_" + str(n) + ".obj", 'rb') as f:
+        with open("ngram_pickle_dynamic" + str(n) + ".obj", 'rb') as f:
             ng = pickle.load(f)
         print("Data successfully loaded from pickle")
     except:
-        fl = FileLoader(use_clust=True, clust_name="clusters_full.txt")
+        fl = FileLoader(use_clust=True, clust_name="clusters_dynamic.txt")
         files = os.listdir(dir)
         for f in files:
             if f[-8:] == "only.txt":
@@ -33,7 +33,7 @@ def get_ngrams(dir, n=3):
             s = list(data[1])
             d[i][1] = list(map(" ".join, ngrams(s, n)))
         ng = Ngram_data(d, clust, keys)
-        with open("ngram_pickle_" + str(n) + ".obj", 'wb') as f:
+        with open("ngram_pickle_dynamic" + str(n) + ".obj", 'wb') as f:
             pickle.dump(ng, f)
         print("Pickling Complete")
         return get_ngrams(dir, n)
