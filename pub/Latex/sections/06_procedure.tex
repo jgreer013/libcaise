@@ -1,0 +1,36 @@
+Our goal was to develop a system which would assist in generating new knowledge and insights about software and malware behavior. To that end, we needed a system which would be interpretable to human experts while still offering utility for comparison. With these criteria in mind, we developed LIBCAISE, a system for learning interpretable behavioral components through a novel approach to software analysis by utilizing a variety of Natural Language Processing (NLP) techniques together to create a system which satisfies all of these requirements. 
+
+Little work has been done on analyzing software from a natural language perspective, but the methods used in these approaches often lend themselves to being more interpretable than other machine learning algorithms, as NLP's goal is often to gain insights on human language and its use and meaning as opposed to model performance. NLP approaches also have useful measures for taking the order of terms into account, as human sentences rely on order to derive meaning, with changes in order causing changes in meaning, something which programs mimic as well, though differently with the use of jump statements and function boundaries. Therefore, this paper extends NLP techniques toward program analysis to better derive meaning from the data and model.
+
+The overview of this approach is shown in Figure \ref{fig:flow}. The process is outlined in detail as follows:
+
+\begin{enumerate}
+	\item The process takes in a binary executable and utilizes objdump \cite{objdump} to extract the assembly instructions. Each document is a series of assembly commands with their arguments stripped from them.
+	\item Using Word2Vec, embeddings are learned for each of the commands. Using hierarchical clustering, these embeddings are then clustered together, with the threshold pre-determined by a human expert (though a more extensive study of assembly command usage would yield better clusters). Once found, these are saved for later uses.
+	\item Once clustered, the documents are transformed such that all assembly commands are replaced by their respective cluster ID's. This means that each document is now a sequence of cluster ID's rather than assembly commands.
+	\item After the commands are converted, the documents are transformed again by taking N-grams of these cluster ID's. A larger N corresponds to a more interpretable component, with the downside that the vocabulary is drastically increased.
+	\item Now that the documents have been transformed to a sequence of N-grams, Latent Dirichlet Allocation (LDA) is then applied to this transformed corpus, and the appropriate Document-Topic and Topic-Term distributions are learned.
+	\item Utilizing these distributions, the top T terms for each topic can be extracted, with these terms corresponding to the behavior that the topic captures. Similarly, the top D topics for each document can be extracted, resulting in a higher-level comparison between documents in terms of what topics they share.
+	\item Using these results, one can compare the behavior between two programs and determine to what degree they share certain behaviors. In addition, one can identify what those shared behaviors actually are and what sort of result or purpose they may have.
+\end{enumerate}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{./figures/transform.png}
+  \caption{Flowchart detailing the flow and transformation of information across the entire process. Documents are transformed and analyzed using LDA, and then the transformations are undone to allow for fine-grain interpretability.}
+  \label{fig:flow}
+\end{figure}
+
+The system described fulfills the requirements of extracting interpretable behavioral components of software in an unsupervised manner. The details of each of the system's components is discussed below.
+
+\subsection{Data and Assembly Instructions}
+	\input{./sections/06_01_assembly.tex}
+	
+\subsection{Word2Vec Embeddings and Clustering}
+	\input{./sections/06_02_embed.tex}
+	
+\subsection{N-Grams}
+	\input{./sections/06_03_grams.tex}
+	
+\subsection{LDA and hLDA}
+	\input{./sections/06_04_lda.tex}
+	

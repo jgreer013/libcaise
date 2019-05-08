@@ -6,7 +6,7 @@ import os
 import numpy as np
 
 def main():
-    dir = "source/cpp_examples/assembly/"
+    dir = "source/cpp_examples/dynamic_only/"
     d, keys, clusters = get_ngrams(dir, n=8)
 
     docs = []
@@ -17,7 +17,7 @@ def main():
     X, vocab, word_id = construct_corpus(docs)
     for i in range(len(vocab)):
         vocab[i] = convert_clust_to_term(vocab[i], clusters)
-
+    print(len(docs))
 
     n_samples = 500       # no of iterations for the sampler
     alpha = 10.0           # smoothing over level distributions/

@@ -1,0 +1,49 @@
+% biography section
+% 
+% If you have an EPS/PDF photo (graphicx package needed) extra braces are
+% needed around the contents of the optional argument to biography to prevent
+% the LaTeX parser from getting confused when it sees the complicated
+% \includegraphics command within an optional argument. (You could create
+% your own custom macro containing the \includegraphics command to make things
+% simpler here.)
+%\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
+% or if you just want to reserve a space for a photo:
+
+\newpage
+
+\begin{IEEEbiographynophoto}{Jeremiah Greer}
+received in B.S. degree in Computer Science from the University of Cincinnati, Cincinnati, Ohio, in 2018, and is currently pursuing his M.S. degree in Computer Science at the University of Cincinnati. He has accepted a position at Microsoft in Redmond for Fall 2019. His current research interests include natural language processing, neural networks, software and malware analysis, and artificial intelligence, particularly in game AI.
+\end{IEEEbiographynophoto}
+\vskip 0pt plus -1fil
+% if you will not have a photo at all:
+\begin{IEEEbiographynophoto}{Rashmi Jha}
+is an Associate Professor in Electrical Engineering and Computer Science Department at the University of Cincinnati. She worked as a Process Integration Engineer for Advanced CMOS technologies at IBM Microelectronics, between 2006-2008. She finished her Ph.D. and M.S. in Electrical Engineering from North Carolina State University in 2006 and 2003, respectively, and B.Tech. in Electrical Engineering from IIT Kharagpur, India in 2000. She has been granted 12 US patents and has authored/co-authored several publications. She has been a recipient of Summer Faculty Fellowship award from AFOSR in 2017, CAREER Award from the National Science Foundation (NSF) in 2013, IBM Faculty Award in 2012, IBM Invention Achievement Award in 2007. She is the director of Microelectronics and Integrated-systems with Neuro-centric Devices (MIND) laboratory at the University of Cincinnati. Her current research interests lie in the areas of Artificial Intelligence, Cybersecurity, Neuromorphic SoC, Emerging Logic and Memory Devices, Hardware Security, and Neuroelectronics.
+\end{IEEEbiographynophoto}
+\vskip 0pt plus -1fil
+% insert where needed to balance the two columns on the last page with
+% biographies
+%\newpage
+
+\begin{IEEEbiographynophoto}{Anca Ralescu}
+is a Full Professor in the EECS Department, University of Cincinnati, which she joined in 1983.  She holds degrees in Mathematics from University of Bucharest, Romania (BS, 1972), and Indiana University, Bloomington (MA, 1980, PhD 1983).  She currently heads the Machine Learning and Computational Intelligence Laboratory in the EECS Department, where with her students she is involved in machine learning research with applications to image understanding, text understanding, and cyber-security. Other research interests include brain-computer interface, and artificial intelligence. During 1991-1995 Dr. Ralescu was the Assistant Director of the Laboratory for International Fuzzy Engineering, Yokohama, Japan.  She held visiting positions at various universities, including University of Bristol, UK, Tokyo Institute of Technology, University of Oviedo, Spain, Osaka University, and ParisTech ENST, France.
+\end{IEEEbiographynophoto}
+\vskip 0pt plus -1fil
+\begin{IEEEbiographynophoto}{Temesguen Messay-Kebede}
+is a former faculty in the Electrical and Computer Engineering at the University of Dayton. He is currently a Research Engineer for the Avionics Cyber Protection Team in the Avionics Vulnerability Mitigation Branch, Sensors Directorate, at Wright-Patterson Air Force Base in Dayton, Ohio. He studied Electrical and Computer Engineering at the University of Dayton and he obtained his Ph.D. in December 2014. His research areas include pattern recognition, machine learning, image processing and understanding, robotics and cyber-security.
+\end{IEEEbiographynophoto}
+\vskip 0pt plus -1fil
+\begin{IEEEbiographynophoto}{David Kapp}
+is the Avionics Cyber Protection Team Lead in the Avionics Vulnerability Mitigation Branch, Sensors Directorate, at Wright-Patterson Air Force Base in Dayton, Ohio. Dr. Kapp has spent the last eighteen (18) years performing research and development in novel software protection and anti-tamper solutions for the DoD. His passion is building biologically-inspired adaptable and resilient cyber protection systems. He holds a Ph.D. in Electrical Engineering from Virginia Tech, where he specialized in electromagnetic scattering from randomly rough surfaces.
+\end{IEEEbiographynophoto}
+
+% You can push biographies down or up by placing
+% a \vfill before or after them. The appropriate
+% use of \vfill depends on what kind of text is
+% on the last page and whether or not the columns
+% are being equalized.
+
+%\vfill
+
+% Can be used to pull up biographies so that the bottom of the last one
+% is flush with the other column.
+%\enlargethispage{-5in}

@@ -10,25 +10,27 @@ from scipy.cluster.hierarchy import dendrogram, linkage, fcluster
 from sklearn.cluster import DBSCAN
 import pickle
 
+pickle_obj = "dynamic.obj"
 
 def main():
     try:
         print("Loading data from pickle")
-        fp = open("data_pickle.obj",'rb')
+        #fp = open("data_pickle.obj",'rb')
+        fp = open(pickle_obj,'rb')
         d = pickle.load(fp, encoding='unicode_')
     except:
         print("Pickle loading failed")
         print("Loading files manually")
         fl = FileLoader()
-        dir = "source/cpp_examples/assembly/"
-        files = os.listdir("source/cpp_examples/assembly/")
+        dir = "source/cpp_examples/dynamic_only/"
+        files = os.listdir(dir)
         for f in files:
             if f[-8:] == "only.txt":
                 fl.addFilename(dir + f)
 
         d = fl.getData(type=np.dtype('unicode_'))
         print("Pickling data for faster loading")
-        fp = open('data_pickle.obj','wb')
+        fp = open(pickle_obj,'wb')
         pickle.dump(d, fp)
         fp.close()
         return
@@ -47,23 +49,13 @@ def main():
     print(vocab)
     X = model[vocab]
     labels = vocab
-    db = DBSCAN(eps=0.08, min_samples=1).fit(X)
-    db_lab = db.labels_
 
-    """
-    for id in set(db_lab):
-        k = str(id) + ': '
-        for j in range(len(db_lab)):
-            if db_lab[j] == id:
-                k += vocab[j] + ", "
-        print(k[:-2])
-    """
     md = 5.0
     plt.figure(figsize=(10,7))
     Z = linkage(X, method='ward', metric='euclidean')
     dend = dendrogram(Z, labels=labels)
     plt.axhline(y=md, c='k')
-    plt.title('Euclidean Ward Dendrogram of Assembly Commands')
+    plt.title('Euclidean Ward Dendrogram of Assembly Commands (Dynamic)')
     clusters = fcluster(Z, md, criterion='distance')
     print(clusters)
     plt.show()
@@ -71,14 +63,14 @@ def main():
     print(len(clusters))
     print(len(set(clusters)))
 
-    """
-    f = open("clusters_full.txt", 'w')
+
+    f = open("clusters_dynamic.txt", 'w')
     for i in range(len(clusters)):
         term = vocab[i]
         clus = str(clusters[i])
         f.write(term + "," + clus + "\n")
     f.close()
-    """
+
 
 
 
