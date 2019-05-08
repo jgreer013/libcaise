@@ -10,7 +10,8 @@ from scipy.cluster.hierarchy import dendrogram, linkage, fcluster
 from sklearn.cluster import DBSCAN
 import pickle
 
-pickle_obj = "dynamic.obj"
+subsc = "dynamic_nol"
+pickle_obj = subsc + ".obj"
 
 def main():
     try:
@@ -22,7 +23,7 @@ def main():
         print("Pickle loading failed")
         print("Loading files manually")
         fl = FileLoader()
-        dir = "source/cpp_examples/dynamic_only/"
+        dir = "source/cpp_examples/dynamic_only_no_library/"
         files = os.listdir(dir)
         for f in files:
             if f[-8:] == "only.txt":
@@ -50,13 +51,13 @@ def main():
     X = model[vocab]
     labels = vocab
 
-    md = 5.0
+    cut_point = 0.1
     plt.figure(figsize=(10,7))
     Z = linkage(X, method='ward', metric='euclidean')
     dend = dendrogram(Z, labels=labels)
-    plt.axhline(y=md, c='k')
-    plt.title('Euclidean Ward Dendrogram of Assembly Commands (Dynamic)')
-    clusters = fcluster(Z, md, criterion='distance')
+    plt.axhline(y=cut_point, c='k')
+    plt.title('Euclidean Ward Dendrogram of Assembly Commands (Dynamic No Library)')
+    clusters = fcluster(Z, cut_point, criterion='distance')
     print(clusters)
     plt.show()
     print(len(vocab))
@@ -64,7 +65,7 @@ def main():
     print(len(set(clusters)))
 
 
-    f = open("clusters_dynamic.txt", 'w')
+    f = open("clusters_"+subsc+".txt", 'w')
     for i in range(len(clusters)):
         term = vocab[i]
         clus = str(clusters[i])

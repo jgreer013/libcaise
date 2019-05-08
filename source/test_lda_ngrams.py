@@ -15,8 +15,8 @@ import pyLDAvis.sklearn
 import matplotlib.pyplot as plt
 
 def main():
-    dir = "source/cpp_examples/dynamic_only/"
-    d, keys, clusters = get_ngrams(dir, n=8)
+    dir = "source/cpp_examples/dynamic_only_no_library/"
+    d, keys, clusters = get_ngrams(dir, "_dynamic_nol", n=8)
     print(len(d))
 
     docs = []
@@ -71,10 +71,10 @@ def main():
             print(" ")
 
 
-    """
+
     for k in sorted(clusters.keys(), key=lambda x: int(x)):
         print(k, clusters[k])
-    """
+
 
 
 
