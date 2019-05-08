@@ -6,72 +6,75 @@ mov    %rsp,%rdx
 and    $0xfffffffffffffff0,%rsp
 push   %rax
 push   %rsp
-lea    0x33a(%rip),%r8        
-lea    0x2c3(%rip),%rcx        
-lea    0x222(%rip),%rdi        
-callq  *0x200986(%rip)        
+mov    $0x400870,%r8
+mov    $0x400800,%rcx
+mov    $0x400760,%rdi
+callq  400510 <__libc_start_main@plt>
 hlt    
-nopl   0x0(%rax,%rax,1)
+nopw   0x0(%rax,%rax,1)
 <deregister_tm_clones>:
-lea    0x2009a9(%rip),%rdi        
+mov    $0x601057,%eax
 push   %rbp
-lea    0x2009a1(%rip),%rax        
-cmp    %rdi,%rax
+sub    $0x601050,%rax
+cmp    $0xe,%rax
 mov    %rsp,%rbp
-je     690 <deregister_tm_clones+0x30>
-mov    0x20095a(%rip),%rax        
+jbe    400590 <deregister_tm_clones+0x30>
+mov    $0x0,%eax
 test   %rax,%rax
-je     690 <deregister_tm_clones+0x30>
+je     400590 <deregister_tm_clones+0x30>
 pop    %rbp
+mov    $0x601050,%edi
 jmpq   *%rax
-nopw   %cs:0x0(%rax,%rax,1)
+nopw   0x0(%rax,%rax,1)
 pop    %rbp
 retq   
 nopl   0x0(%rax)
 nopw   %cs:0x0(%rax,%rax,1)
 <register_tm_clones>:
-lea    0x200969(%rip),%rdi        
-lea    0x200962(%rip),%rsi        
+mov    $0x601050,%esi
 push   %rbp
-sub    %rdi,%rsi
-mov    %rsp,%rbp
+sub    $0x601050,%rsi
 sar    $0x3,%rsi
+mov    %rsp,%rbp
 mov    %rsi,%rax
 shr    $0x3f,%rax
 add    %rax,%rsi
 sar    %rsi
-je     6e0 <register_tm_clones+0x40>
-mov    0x200921(%rip),%rax        
+je     4005d8 <register_tm_clones+0x38>
+mov    $0x0,%eax
 test   %rax,%rax
-je     6e0 <register_tm_clones+0x40>
+je     4005d8 <register_tm_clones+0x38>
 pop    %rbp
+mov    $0x601050,%edi
 jmpq   *%rax
-nopw   0x0(%rax,%rax,1)
+nopl   (%rax)
 pop    %rbp
 retq   
-nopl   0x0(%rax)
-nopw   %cs:0x0(%rax,%rax,1)
+nopw   0x0(%rax,%rax,1)
 <__do_global_dtors_aux>:
-cmpb   $0x0,0x200919(%rip)        
-jne    728 <__do_global_dtors_aux+0x38>
-cmpq   $0x0,0x2008f7(%rip)        
+cmpb   $0x0,0x200a69(%rip)        
+jne    4005fa <__do_global_dtors_aux+0x1a>
 push   %rbp
 mov    %rsp,%rbp
-je     713 <__do_global_dtors_aux+0x23>
-mov    0x2008fa(%rip),%rdi        
-callq  620 <__cxa_finalize@plt>
-callq  660 <deregister_tm_clones>
-movb   $0x1,0x2008f1(%rip)        
+callq  400560 <deregister_tm_clones>
 pop    %rbp
-retq   
-nopl   0x0(%rax)
+movb   $0x1,0x200a56(%rip)        
 repz retq 
-nopw   0x0(%rax,%rax,1)
+nopl   0x0(%rax)
 <frame_dummy>:
+mov    $0x600e20,%edi
+cmpq   $0x0,(%rdi)
+jne    400610 <frame_dummy+0x10>
+jmp    4005a0 <register_tm_clones>
+nopl   (%rax)
+mov    $0x0,%eax
+test   %rax,%rax
+je     40060b <frame_dummy+0xb>
 push   %rbp
 mov    %rsp,%rbp
+callq  *%rax
 pop    %rbp
-jmpq   6a0 <register_tm_clones>
+jmpq   4005a0 <register_tm_clones>
 <_Z4swapPiS_>:
 push   %rbp
 mov    %rsp,%rbp
@@ -97,12 +100,12 @@ sub    $0x20,%rsp
 mov    %rdi,-0x18(%rbp)
 mov    %esi,-0x1c(%rbp)
 cmpl   $0x1,-0x1c(%rbp)
-je     819 <_Z10bubbleSortPii+0xb2>
+je     400705 <_Z10bubbleSortPii+0xb2>
 movl   $0x0,-0x4(%rbp)
 mov    -0x1c(%rbp),%eax
 sub    $0x1,%eax
-cmp    %eax,-0x4(%rbp)
-jge    803 <_Z10bubbleSortPii+0x9c>
+cmp    -0x4(%rbp),%eax
+jle    4006ef <_Z10bubbleSortPii+0x9c>
 mov    -0x4(%rbp),%eax
 cltq   
 lea    0x0(,%rax,4),%rdx
@@ -117,7 +120,7 @@ mov    -0x18(%rbp),%rax
 add    %rcx,%rax
 mov    (%rax),%eax
 cmp    %eax,%edx
-jle    7fd <_Z10bubbleSortPii+0x96>
+jle    4006e9 <_Z10bubbleSortPii+0x96>
 mov    -0x4(%rbp),%eax
 cltq   
 add    $0x1,%rax
@@ -131,16 +134,16 @@ mov    -0x18(%rbp),%rax
 add    %rcx,%rax
 mov    %rdx,%rsi
 mov    %rax,%rdi
-callq  73a <_Z4swapPiS_>
+callq  400626 <_Z4swapPiS_>
 addl   $0x1,-0x4(%rbp)
-jmp    787 <_Z10bubbleSortPii+0x20>
+jmp    400673 <_Z10bubbleSortPii+0x20>
 mov    -0x1c(%rbp),%eax
 lea    -0x1(%rax),%edx
 mov    -0x18(%rbp),%rax
 mov    %edx,%esi
 mov    %rax,%rdi
-callq  767 <_Z10bubbleSortPii>
-jmp    81a <_Z10bubbleSortPii+0xb3>
+callq  400653 <_Z10bubbleSortPii>
+jmp    400706 <_Z10bubbleSortPii+0xb3>
 nop
 leaveq 
 retq   
@@ -153,7 +156,7 @@ mov    %esi,-0x1c(%rbp)
 movl   $0x0,-0x4(%rbp)
 mov    -0x4(%rbp),%eax
 cmp    -0x1c(%rbp),%eax
-jge    869 <_Z10printArrayPii+0x4d>
+jge    400753 <_Z10printArrayPii+0x4b>
 mov    -0x4(%rbp),%eax
 cltq   
 lea    0x0(,%rax,4),%rdx
@@ -161,13 +164,13 @@ mov    -0x18(%rbp),%rax
 add    %rdx,%rax
 mov    (%rax),%eax
 mov    %eax,%esi
-lea    0x13b(%rip),%rdi        
+mov    $0x400884,%edi
 mov    $0x0,%eax
-callq  610 <printf@plt>
+callq  400500 <printf@plt>
 addl   $0x1,-0x4(%rbp)
-jmp    832 <_Z10printArrayPii+0x16>
+jmp    40071e <_Z10printArrayPii+0x16>
 mov    $0xa,%edi
-callq  5e0 <putchar@plt>
+callq  4004d0 <putchar@plt>
 nop
 leaveq 
 retq   
@@ -185,54 +188,55 @@ movl   $0xc,-0x24(%rbp)
 movl   $0x16,-0x20(%rbp)
 movl   $0xb,-0x1c(%rbp)
 movl   $0x5a,-0x18(%rbp)
-movl   $0x7,-0x34(%rbp)
+mov    $0x7,%eax
+mov    %eax,-0x34(%rbp)
 mov    -0x34(%rbp),%edx
 lea    -0x30(%rbp),%rax
 mov    %edx,%esi
 mov    %rax,%rdi
-callq  767 <_Z10bubbleSortPii>
-lea    0xbb(%rip),%rdi        
-callq  5f0 <puts@plt>
+callq  400653 <_Z10bubbleSortPii>
+mov    $0x400888,%edi
+callq  4004e0 <puts@plt>
 mov    -0x34(%rbp),%edx
 lea    -0x30(%rbp),%rax
 mov    %edx,%esi
 mov    %rax,%rdi
-callq  81c <_Z10printArrayPii>
+callq  400708 <_Z10printArrayPii>
 mov    $0x0,%eax
 mov    -0x8(%rbp),%rcx
 xor    %fs:0x28,%rcx
-je     90c <main+0x96>
-callq  600 <__stack_chk_fail@plt>
+je     4007f5 <main+0x95>
+callq  4004f0 <__stack_chk_fail@plt>
 leaveq 
 retq   
-xchg   %ax,%ax
+nopw   0x0(%rax,%rax,1)
 <__libc_csu_init>:
 push   %r15
 push   %r14
-mov    %rdx,%r15
+mov    %edi,%r15d
 push   %r13
 push   %r12
-lea    0x20047e(%rip),%r12        
+lea    0x2005fe(%rip),%r12        
 push   %rbp
-lea    0x20047e(%rip),%rbp        
+lea    0x2005fe(%rip),%rbp        
 push   %rbx
-mov    %edi,%r13d
 mov    %rsi,%r14
+mov    %rdx,%r13
 sub    %r12,%rbp
 sub    $0x8,%rsp
 sar    $0x3,%rbp
-callq  5b8 <_init>
+callq  400498 <_init>
 test   %rbp,%rbp
-je     966 <__libc_csu_init+0x56>
+je     400856 <__libc_csu_init+0x56>
 xor    %ebx,%ebx
 nopl   0x0(%rax,%rax,1)
-mov    %r15,%rdx
+mov    %r13,%rdx
 mov    %r14,%rsi
-mov    %r13d,%edi
+mov    %r15d,%edi
 callq  *(%r12,%rbx,8)
 add    $0x1,%rbx
-cmp    %rbx,%rbp
-jne    950 <__libc_csu_init+0x40>
+cmp    %rbp,%rbx
+jne    400840 <__libc_csu_init+0x40>
 add    $0x8,%rsp
 pop    %rbx
 pop    %rbp

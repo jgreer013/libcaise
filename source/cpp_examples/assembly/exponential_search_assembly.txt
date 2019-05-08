@@ -6,72 +6,75 @@ mov    %rsp,%rdx
 and    $0xfffffffffffffff0,%rsp
 push   %rax
 push   %rsp
-lea    0x39a(%rip),%r8        
-lea    0x323(%rip),%rcx        
-lea    0x24b(%rip),%rdi        
-callq  *0x200a16(%rip)        
+mov    $0x400840,%r8
+mov    $0x4007d0,%rcx
+mov    $0x4006fb,%rdi
+callq  400480 <__libc_start_main@plt>
 hlt    
-nopl   0x0(%rax,%rax,1)
+nopw   0x0(%rax,%rax,1)
 <deregister_tm_clones>:
-lea    0x200a39(%rip),%rdi        
+mov    $0x601047,%eax
 push   %rbp
-lea    0x200a31(%rip),%rax        
-cmp    %rdi,%rax
+sub    $0x601040,%rax
+cmp    $0xe,%rax
 mov    %rsp,%rbp
-je     600 <deregister_tm_clones+0x30>
-mov    0x2009ea(%rip),%rax        
+jbe    400500 <deregister_tm_clones+0x30>
+mov    $0x0,%eax
 test   %rax,%rax
-je     600 <deregister_tm_clones+0x30>
+je     400500 <deregister_tm_clones+0x30>
 pop    %rbp
+mov    $0x601040,%edi
 jmpq   *%rax
-nopw   %cs:0x0(%rax,%rax,1)
+nopw   0x0(%rax,%rax,1)
 pop    %rbp
 retq   
 nopl   0x0(%rax)
 nopw   %cs:0x0(%rax,%rax,1)
 <register_tm_clones>:
-lea    0x2009f9(%rip),%rdi        
-lea    0x2009f2(%rip),%rsi        
+mov    $0x601040,%esi
 push   %rbp
-sub    %rdi,%rsi
-mov    %rsp,%rbp
+sub    $0x601040,%rsi
 sar    $0x3,%rsi
+mov    %rsp,%rbp
 mov    %rsi,%rax
 shr    $0x3f,%rax
 add    %rax,%rsi
 sar    %rsi
-je     650 <register_tm_clones+0x40>
-mov    0x2009b1(%rip),%rax        
+je     400548 <register_tm_clones+0x38>
+mov    $0x0,%eax
 test   %rax,%rax
-je     650 <register_tm_clones+0x40>
+je     400548 <register_tm_clones+0x38>
 pop    %rbp
+mov    $0x601040,%edi
 jmpq   *%rax
-nopw   0x0(%rax,%rax,1)
+nopl   (%rax)
 pop    %rbp
 retq   
-nopl   0x0(%rax)
-nopw   %cs:0x0(%rax,%rax,1)
+nopw   0x0(%rax,%rax,1)
 <__do_global_dtors_aux>:
-cmpb   $0x0,0x2009a9(%rip)        
-jne    698 <__do_global_dtors_aux+0x38>
-cmpq   $0x0,0x200987(%rip)        
+cmpb   $0x0,0x200ae9(%rip)        
+jne    40056a <__do_global_dtors_aux+0x1a>
 push   %rbp
 mov    %rsp,%rbp
-je     683 <__do_global_dtors_aux+0x23>
-mov    0x20098a(%rip),%rdi        
-callq  590 <__cxa_finalize@plt>
-callq  5d0 <deregister_tm_clones>
-movb   $0x1,0x200981(%rip)        
+callq  4004d0 <deregister_tm_clones>
 pop    %rbp
-retq   
-nopl   0x0(%rax)
+movb   $0x1,0x200ad6(%rip)        
 repz retq 
-nopw   0x0(%rax,%rax,1)
+nopl   0x0(%rax)
 <frame_dummy>:
+mov    $0x600e20,%edi
+cmpq   $0x0,(%rdi)
+jne    400580 <frame_dummy+0x10>
+jmp    400510 <register_tm_clones>
+nopl   (%rax)
+mov    $0x0,%eax
+test   %rax,%rax
+je     40057b <frame_dummy+0xb>
 push   %rbp
 mov    %rsp,%rbp
+callq  *%rax
 pop    %rbp
-jmpq   610 <register_tm_clones>
+jmpq   400510 <register_tm_clones>
 <_Z17exponentialSearchPiii>:
 push   %rbp
 mov    %rsp,%rbp
@@ -84,32 +87,32 @@ mov    %rax,-0x8(%rbp)
 xor    %eax,%eax
 mov    -0x18(%rbp),%rax
 mov    (%rax),%eax
-cmp    %eax,-0x20(%rbp)
-jne    6dd <_Z17exponentialSearchPiii+0x33>
+cmp    -0x20(%rbp),%eax
+jne    4005c9 <_Z17exponentialSearchPiii+0x33>
 mov    $0x0,%eax
-jmp    745 <_Z17exponentialSearchPiii+0x9b>
+jmp    400631 <_Z17exponentialSearchPiii+0x9b>
 movl   $0x1,-0xc(%rbp)
 mov    -0xc(%rbp),%edx
 mov    -0x1c(%rbp),%eax
 cmp    %eax,%edx
-jge    713 <_Z17exponentialSearchPiii+0x69>
+jge    4005ff <_Z17exponentialSearchPiii+0x69>
 mov    -0xc(%rbp),%eax
 cltq   
 lea    0x0(,%rax,4),%rdx
 mov    -0x18(%rbp),%rax
 add    %rdx,%rax
 mov    (%rax),%eax
-cmp    %eax,-0x20(%rbp)
-jl     713 <_Z17exponentialSearchPiii+0x69>
+cmp    -0x20(%rbp),%eax
+jg     4005ff <_Z17exponentialSearchPiii+0x69>
 mov    -0xc(%rbp),%eax
 add    %eax,%eax
 mov    %eax,-0xc(%rbp)
-jmp    6e4 <_Z17exponentialSearchPiii+0x3a>
+jmp    4005d0 <_Z17exponentialSearchPiii+0x3a>
 lea    -0x1c(%rbp),%rdx
 lea    -0xc(%rbp),%rax
 mov    %rdx,%rsi
 mov    %rax,%rdi
-callq  8b8 <_ZSt3minIiERKT_S2_S2_>
+callq  4007a1 <_ZSt3minIiERKT_S2_S2_>
 mov    (%rax),%edx
 mov    -0xc(%rbp),%eax
 mov    %eax,%ecx
@@ -120,11 +123,11 @@ mov    %eax,%esi
 mov    -0x20(%rbp),%ecx
 mov    -0x18(%rbp),%rax
 mov    %rax,%rdi
-callq  75b <_Z12binarySearchPiiii>
+callq  400647 <_Z12binarySearchPiiii>
 mov    -0x8(%rbp),%rdi
 xor    %fs:0x28,%rdi
-je     759 <_Z17exponentialSearchPiii+0xaf>
-callq  570 <__stack_chk_fail@plt>
+je     400645 <_Z17exponentialSearchPiii+0xaf>
+callq  400460 <__stack_chk_fail@plt>
 leaveq 
 retq   
 <_Z12binarySearchPiiii>:
@@ -137,7 +140,7 @@ mov    %edx,-0x20(%rbp)
 mov    %ecx,-0x24(%rbp)
 mov    -0x20(%rbp),%eax
 cmp    -0x1c(%rbp),%eax
-jl     808 <_Z12binarySearchPiiii+0xad>
+jl     4006f4 <_Z12binarySearchPiiii+0xad>
 mov    -0x20(%rbp),%eax
 sub    -0x1c(%rbp),%eax
 mov    %eax,%edx
@@ -154,18 +157,18 @@ lea    0x0(,%rax,4),%rdx
 mov    -0x18(%rbp),%rax
 add    %rdx,%rax
 mov    (%rax),%eax
-cmp    %eax,-0x24(%rbp)
-jne    7b5 <_Z12binarySearchPiiii+0x5a>
+cmp    -0x24(%rbp),%eax
+jne    4006a1 <_Z12binarySearchPiiii+0x5a>
 mov    -0x4(%rbp),%eax
-jmp    80d <_Z12binarySearchPiiii+0xb2>
+jmp    4006f9 <_Z12binarySearchPiiii+0xb2>
 mov    -0x4(%rbp),%eax
 cltq   
 lea    0x0(,%rax,4),%rdx
 mov    -0x18(%rbp),%rax
 add    %rdx,%rax
 mov    (%rax),%eax
-cmp    %eax,-0x24(%rbp)
-jge    7ee <_Z12binarySearchPiiii+0x93>
+cmp    -0x24(%rbp),%eax
+jle    4006da <_Z12binarySearchPiiii+0x93>
 mov    -0x4(%rbp),%eax
 lea    -0x1(%rax),%edi
 mov    -0x24(%rbp),%edx
@@ -174,16 +177,16 @@ mov    -0x18(%rbp),%rax
 mov    %edx,%ecx
 mov    %edi,%edx
 mov    %rax,%rdi
-callq  75b <_Z12binarySearchPiiii>
-jmp    80d <_Z12binarySearchPiiii+0xb2>
+callq  400647 <_Z12binarySearchPiiii>
+jmp    4006f9 <_Z12binarySearchPiiii+0xb2>
 mov    -0x4(%rbp),%eax
 lea    0x1(%rax),%esi
 mov    -0x24(%rbp),%ecx
 mov    -0x20(%rbp),%edx
 mov    -0x18(%rbp),%rax
 mov    %rax,%rdi
-callq  75b <_Z12binarySearchPiiii>
-jmp    80d <_Z12binarySearchPiiii+0xb2>
+callq  400647 <_Z12binarySearchPiiii>
+jmp    4006f9 <_Z12binarySearchPiiii+0xb2>
 mov    $0xffffffff,%eax
 leaveq 
 retq   
@@ -199,31 +202,32 @@ movl   $0x3,-0x1c(%rbp)
 movl   $0x4,-0x18(%rbp)
 movl   $0xa,-0x14(%rbp)
 movl   $0x28,-0x10(%rbp)
-movl   $0x5,-0x2c(%rbp)
+mov    $0x5,%eax
+mov    %eax,-0x2c(%rbp)
 movl   $0xa,-0x28(%rbp)
 mov    -0x28(%rbp),%edx
 mov    -0x2c(%rbp),%ecx
 lea    -0x20(%rbp),%rax
 mov    %ecx,%esi
 mov    %rax,%rdi
-callq  6aa <_Z17exponentialSearchPiii>
+callq  400596 <_Z17exponentialSearchPiii>
 mov    %eax,-0x24(%rbp)
 cmpl   $0xffffffff,-0x24(%rbp)
-jne    887 <main+0x78>
-lea    0xf5(%rip),%rdi        
+jne    400772 <main+0x77>
+mov    $0x400858,%edi
 mov    $0x0,%eax
-callq  580 <printf@plt>
-jmp    89d <main+0x8e>
+callq  400470 <printf@plt>
+jmp    400786 <main+0x8b>
 mov    -0x24(%rbp),%eax
 mov    %eax,%esi
-lea    0xfd(%rip),%rdi        
+mov    $0x400878,%edi
 mov    $0x0,%eax
-callq  580 <printf@plt>
+callq  400470 <printf@plt>
 mov    $0x0,%eax
 mov    -0x8(%rbp),%rcx
 xor    %fs:0x28,%rcx
-je     8b6 <main+0xa7>
-callq  570 <__stack_chk_fail@plt>
+je     40079f <main+0xa4>
+callq  400460 <__stack_chk_fail@plt>
 leaveq 
 retq   
 <_ZSt3minIiERKT_S2_S2_>:
@@ -236,39 +240,40 @@ mov    (%rax),%edx
 mov    -0x8(%rbp),%rax
 mov    (%rax),%eax
 cmp    %eax,%edx
-jge    8da <_ZSt3minIiERKT_S2_S2_+0x22>
+jge    4007c3 <_ZSt3minIiERKT_S2_S2_+0x22>
 mov    -0x10(%rbp),%rax
-jmp    8de <_ZSt3minIiERKT_S2_S2_+0x26>
+jmp    4007c7 <_ZSt3minIiERKT_S2_S2_+0x26>
 mov    -0x8(%rbp),%rax
 pop    %rbp
 retq   
+nopl   0x0(%rax)
 <__libc_csu_init>:
 push   %r15
 push   %r14
-mov    %rdx,%r15
+mov    %edi,%r15d
 push   %r13
 push   %r12
-lea    0x2004be(%rip),%r12        
+lea    0x20062e(%rip),%r12        
 push   %rbp
-lea    0x2004be(%rip),%rbp        
+lea    0x20062e(%rip),%rbp        
 push   %rbx
-mov    %edi,%r13d
 mov    %rsi,%r14
+mov    %rdx,%r13
 sub    %r12,%rbp
 sub    $0x8,%rsp
 sar    $0x3,%rbp
-callq  548 <_init>
+callq  400428 <_init>
 test   %rbp,%rbp
-je     936 <__libc_csu_init+0x56>
+je     400826 <__libc_csu_init+0x56>
 xor    %ebx,%ebx
 nopl   0x0(%rax,%rax,1)
-mov    %r15,%rdx
+mov    %r13,%rdx
 mov    %r14,%rsi
-mov    %r13d,%edi
+mov    %r15d,%edi
 callq  *(%r12,%rbx,8)
 add    $0x1,%rbx
-cmp    %rbx,%rbp
-jne    920 <__libc_csu_init+0x40>
+cmp    %rbp,%rbx
+jne    400810 <__libc_csu_init+0x40>
 add    $0x8,%rsp
 pop    %rbx
 pop    %rbp

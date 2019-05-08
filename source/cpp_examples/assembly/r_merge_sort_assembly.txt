@@ -6,72 +6,75 @@ mov    %rsp,%rdx
 and    $0xfffffffffffffff0,%rsp
 push   %rax
 push   %rsp
-lea    0x5ba(%rip),%r8        
-lea    0x543(%rip),%rcx        
-lea    0x485(%rip),%rdi        
-callq  *0x201986(%rip)        
+mov    $0x400af0,%r8
+mov    $0x400a80,%rcx
+mov    $0x4009c3,%rdi
+callq  400510 <__libc_start_main@plt>
 hlt    
-nopl   0x0(%rax,%rax,1)
+nopw   0x0(%rax,%rax,1)
 <deregister_tm_clones>:
-lea    0x2019a9(%rip),%rdi        
+mov    $0x601057,%eax
 push   %rbp
-lea    0x2019a1(%rip),%rax        
-cmp    %rdi,%rax
+sub    $0x601050,%rax
+cmp    $0xe,%rax
 mov    %rsp,%rbp
-je     690 <deregister_tm_clones+0x30>
-mov    0x20195a(%rip),%rax        
+jbe    400590 <deregister_tm_clones+0x30>
+mov    $0x0,%eax
 test   %rax,%rax
-je     690 <deregister_tm_clones+0x30>
+je     400590 <deregister_tm_clones+0x30>
 pop    %rbp
+mov    $0x601050,%edi
 jmpq   *%rax
-nopw   %cs:0x0(%rax,%rax,1)
+nopw   0x0(%rax,%rax,1)
 pop    %rbp
 retq   
 nopl   0x0(%rax)
 nopw   %cs:0x0(%rax,%rax,1)
 <register_tm_clones>:
-lea    0x201969(%rip),%rdi        
-lea    0x201962(%rip),%rsi        
+mov    $0x601050,%esi
 push   %rbp
-sub    %rdi,%rsi
-mov    %rsp,%rbp
+sub    $0x601050,%rsi
 sar    $0x3,%rsi
+mov    %rsp,%rbp
 mov    %rsi,%rax
 shr    $0x3f,%rax
 add    %rax,%rsi
 sar    %rsi
-je     6e0 <register_tm_clones+0x40>
-mov    0x201921(%rip),%rax        
+je     4005d8 <register_tm_clones+0x38>
+mov    $0x0,%eax
 test   %rax,%rax
-je     6e0 <register_tm_clones+0x40>
+je     4005d8 <register_tm_clones+0x38>
 pop    %rbp
+mov    $0x601050,%edi
 jmpq   *%rax
-nopw   0x0(%rax,%rax,1)
+nopl   (%rax)
 pop    %rbp
 retq   
-nopl   0x0(%rax)
-nopw   %cs:0x0(%rax,%rax,1)
+nopw   0x0(%rax,%rax,1)
 <__do_global_dtors_aux>:
-cmpb   $0x0,0x201919(%rip)        
-jne    728 <__do_global_dtors_aux+0x38>
-cmpq   $0x0,0x2018f7(%rip)        
+cmpb   $0x0,0x200a69(%rip)        
+jne    4005fa <__do_global_dtors_aux+0x1a>
 push   %rbp
 mov    %rsp,%rbp
-je     713 <__do_global_dtors_aux+0x23>
-mov    0x2018fa(%rip),%rdi        
-callq  620 <__cxa_finalize@plt>
-callq  660 <deregister_tm_clones>
-movb   $0x1,0x2018f1(%rip)        
+callq  400560 <deregister_tm_clones>
 pop    %rbp
-retq   
-nopl   0x0(%rax)
+movb   $0x1,0x200a56(%rip)        
 repz retq 
-nopw   0x0(%rax,%rax,1)
+nopl   0x0(%rax)
 <frame_dummy>:
+mov    $0x600e20,%edi
+cmpq   $0x0,(%rdi)
+jne    400610 <frame_dummy+0x10>
+jmp    4005a0 <register_tm_clones>
+nopl   (%rax)
+mov    $0x0,%eax
+test   %rax,%rax
+je     40060b <frame_dummy+0xb>
 push   %rbp
 mov    %rsp,%rbp
+callq  *%rax
 pop    %rbp
-jmpq   6a0 <register_tm_clones>
+jmpq   4005a0 <register_tm_clones>
 <_Z5mergePiiii>:
 push   %rbp
 mov    %rsp,%rbp
@@ -152,12 +155,12 @@ add    $0x3,%rax
 shr    $0x2,%rax
 shl    $0x2,%rax
 mov    %rax,-0x30(%rbp)
-movl   $0x0,-0x54(%rbp)
-mov    -0x54(%rbp),%eax
+movl   $0x0,-0x5c(%rbp)
+mov    -0x5c(%rbp),%eax
 cmp    -0x50(%rbp),%eax
-jge    896 <_Z5mergePiiii+0x15c>
+jge    400782 <_Z5mergePiiii+0x15c>
 mov    -0x6c(%rbp),%edx
-mov    -0x54(%rbp),%eax
+mov    -0x5c(%rbp),%eax
 add    %edx,%eax
 cltq   
 lea    0x0(,%rax,4),%rdx
@@ -165,15 +168,15 @@ mov    -0x68(%rbp),%rax
 add    %rdx,%rax
 mov    (%rax),%ecx
 mov    -0x40(%rbp),%rax
-mov    -0x54(%rbp),%edx
+mov    -0x5c(%rbp),%edx
 movslq %edx,%rdx
 mov    %ecx,(%rax,%rdx,4)
-addl   $0x1,-0x54(%rbp)
-jmp    860 <_Z5mergePiiii+0x126>
+addl   $0x1,-0x5c(%rbp)
+jmp    40074c <_Z5mergePiiii+0x126>
 movl   $0x0,-0x58(%rbp)
 mov    -0x58(%rbp),%eax
 cmp    -0x4c(%rbp),%eax
-jge    8d6 <_Z5mergePiiii+0x19c>
+jge    4007c2 <_Z5mergePiiii+0x19c>
 mov    -0x70(%rbp),%eax
 lea    0x1(%rax),%edx
 mov    -0x58(%rbp),%eax
@@ -188,19 +191,19 @@ mov    -0x58(%rbp),%edx
 movslq %edx,%rdx
 mov    %ecx,(%rax,%rdx,4)
 addl   $0x1,-0x58(%rbp)
-jmp    89d <_Z5mergePiiii+0x163>
-movl   $0x0,-0x54(%rbp)
+jmp    400789 <_Z5mergePiiii+0x163>
+movl   $0x0,-0x5c(%rbp)
 movl   $0x0,-0x58(%rbp)
 mov    -0x6c(%rbp),%eax
-mov    %eax,-0x5c(%rbp)
-mov    -0x54(%rbp),%eax
+mov    %eax,-0x54(%rbp)
+mov    -0x5c(%rbp),%eax
 cmp    -0x50(%rbp),%eax
-jge    977 <_Z5mergePiiii+0x23d>
+jge    400863 <_Z5mergePiiii+0x23d>
 mov    -0x58(%rbp),%eax
 cmp    -0x4c(%rbp),%eax
-jge    977 <_Z5mergePiiii+0x23d>
+jge    400863 <_Z5mergePiiii+0x23d>
 mov    -0x40(%rbp),%rax
-mov    -0x54(%rbp),%edx
+mov    -0x5c(%rbp),%edx
 movslq %edx,%rdx
 mov    (%rax,%rdx,4),%ecx
 mov    -0x30(%rbp),%rax
@@ -208,20 +211,20 @@ mov    -0x58(%rbp),%edx
 movslq %edx,%rdx
 mov    (%rax,%rdx,4),%eax
 cmp    %eax,%ecx
-jg     946 <_Z5mergePiiii+0x20c>
-mov    -0x5c(%rbp),%eax
+jg     400832 <_Z5mergePiiii+0x20c>
+mov    -0x54(%rbp),%eax
 cltq   
 lea    0x0(,%rax,4),%rdx
 mov    -0x68(%rbp),%rax
 lea    (%rdx,%rax,1),%rcx
 mov    -0x40(%rbp),%rax
-mov    -0x54(%rbp),%edx
+mov    -0x5c(%rbp),%edx
 movslq %edx,%rdx
 mov    (%rax,%rdx,4),%eax
 mov    %eax,(%rcx)
-addl   $0x1,-0x54(%rbp)
-jmp    96e <_Z5mergePiiii+0x234>
-mov    -0x5c(%rbp),%eax
+addl   $0x1,-0x5c(%rbp)
+jmp    40085a <_Z5mergePiiii+0x234>
+mov    -0x54(%rbp),%eax
 cltq   
 lea    0x0(,%rax,4),%rdx
 mov    -0x68(%rbp),%rax
@@ -232,28 +235,28 @@ movslq %edx,%rdx
 mov    (%rax,%rdx,4),%eax
 mov    %eax,(%rcx)
 addl   $0x1,-0x58(%rbp)
-addl   $0x1,-0x5c(%rbp)
-jmpq   8ea <_Z5mergePiiii+0x1b0>
-mov    -0x54(%rbp),%eax
-cmp    -0x50(%rbp),%eax
-jge    9ad <_Z5mergePiiii+0x273>
+addl   $0x1,-0x54(%rbp)
+jmpq   4007d6 <_Z5mergePiiii+0x1b0>
 mov    -0x5c(%rbp),%eax
+cmp    -0x50(%rbp),%eax
+jge    400899 <_Z5mergePiiii+0x273>
+mov    -0x54(%rbp),%eax
 cltq   
 lea    0x0(,%rax,4),%rdx
 mov    -0x68(%rbp),%rax
 lea    (%rdx,%rax,1),%rcx
 mov    -0x40(%rbp),%rax
-mov    -0x54(%rbp),%edx
+mov    -0x5c(%rbp),%edx
 movslq %edx,%rdx
 mov    (%rax,%rdx,4),%eax
 mov    %eax,(%rcx)
-addl   $0x1,-0x54(%rbp)
 addl   $0x1,-0x5c(%rbp)
-jmp    977 <_Z5mergePiiii+0x23d>
+addl   $0x1,-0x54(%rbp)
+jmp    400863 <_Z5mergePiiii+0x23d>
 mov    -0x58(%rbp),%eax
 cmp    -0x4c(%rbp),%eax
-jge    9e3 <_Z5mergePiiii+0x2a9>
-mov    -0x5c(%rbp),%eax
+jge    4008cf <_Z5mergePiiii+0x2a9>
+mov    -0x54(%rbp),%eax
 cltq   
 lea    0x0(,%rax,4),%rdx
 mov    -0x68(%rbp),%rax
@@ -264,14 +267,14 @@ movslq %edx,%rdx
 mov    (%rax,%rdx,4),%eax
 mov    %eax,(%rcx)
 addl   $0x1,-0x58(%rbp)
-addl   $0x1,-0x5c(%rbp)
-jmp    9ad <_Z5mergePiiii+0x273>
+addl   $0x1,-0x54(%rbp)
+jmp    400899 <_Z5mergePiiii+0x273>
 mov    %rsi,%rsp
 nop
 mov    -0x28(%rbp),%rax
 xor    %fs:0x28,%rax
-je     9fb <_Z5mergePiiii+0x2c1>
-callq  600 <__stack_chk_fail@plt>
+je     4008e7 <_Z5mergePiiii+0x2c1>
+callq  4004f0 <__stack_chk_fail@plt>
 lea    -0x20(%rbp),%rsp
 pop    %r12
 pop    %r13
@@ -288,7 +291,7 @@ mov    %esi,-0x1c(%rbp)
 mov    %edx,-0x20(%rbp)
 mov    -0x1c(%rbp),%eax
 cmp    -0x20(%rbp),%eax
-jge    a7c <_Z9mergeSortPiii+0x73>
+jge    400968 <_Z9mergeSortPiii+0x73>
 mov    -0x20(%rbp),%eax
 sub    -0x1c(%rbp),%eax
 mov    %eax,%edx
@@ -304,20 +307,20 @@ mov    -0x1c(%rbp),%ecx
 mov    -0x18(%rbp),%rax
 mov    %ecx,%esi
 mov    %rax,%rdi
-callq  a09 <_Z9mergeSortPiii>
+callq  4008f5 <_Z9mergeSortPiii>
 mov    -0x4(%rbp),%eax
 lea    0x1(%rax),%ecx
 mov    -0x20(%rbp),%edx
 mov    -0x18(%rbp),%rax
 mov    %ecx,%esi
 mov    %rax,%rdi
-callq  a09 <_Z9mergeSortPiii>
+callq  4008f5 <_Z9mergeSortPiii>
 mov    -0x20(%rbp),%ecx
 mov    -0x4(%rbp),%edx
 mov    -0x1c(%rbp),%esi
 mov    -0x18(%rbp),%rax
 mov    %rax,%rdi
-callq  73a <_Z5mergePiiii>
+callq  400626 <_Z5mergePiiii>
 nop
 leaveq 
 retq   
@@ -330,7 +333,7 @@ mov    %esi,-0x1c(%rbp)
 movl   $0x0,-0x4(%rbp)
 mov    -0x4(%rbp),%eax
 cmp    -0x1c(%rbp),%eax
-jge    acc <_Z10printArrayPii+0x4d>
+jge    4009b6 <_Z10printArrayPii+0x4b>
 mov    -0x4(%rbp),%eax
 cltq   
 lea    0x0(,%rax,4),%rdx
@@ -338,13 +341,13 @@ mov    -0x18(%rbp),%rax
 add    %rdx,%rax
 mov    (%rax),%eax
 mov    %eax,%esi
-lea    0x158(%rip),%rdi        
+mov    $0x400b04,%edi
 mov    $0x0,%eax
-callq  610 <printf@plt>
+callq  400500 <printf@plt>
 addl   $0x1,-0x4(%rbp)
-jmp    a95 <_Z10printArrayPii+0x16>
+jmp    400981 <_Z10printArrayPii+0x16>
 mov    $0xa,%edi
-callq  5e0 <putchar@plt>
+callq  4004d0 <putchar@plt>
 nop
 leaveq 
 retq   
@@ -361,62 +364,64 @@ movl   $0xd,-0x18(%rbp)
 movl   $0x5,-0x14(%rbp)
 movl   $0x6,-0x10(%rbp)
 movl   $0x7,-0xc(%rbp)
-movl   $0x6,-0x24(%rbp)
-lea    0xf0(%rip),%rdi        
-callq  5f0 <puts@plt>
+mov    $0x6,%eax
+mov    %eax,-0x24(%rbp)
+mov    $0x400b08,%edi
+callq  4004e0 <puts@plt>
 mov    -0x24(%rbp),%edx
 lea    -0x20(%rbp),%rax
 mov    %edx,%esi
 mov    %rax,%rdi
-callq  a7f <_Z10printArrayPii>
+callq  40096b <_Z10printArrayPii>
 mov    -0x24(%rbp),%eax
 lea    -0x1(%rax),%edx
 lea    -0x20(%rbp),%rax
 mov    $0x0,%esi
 mov    %rax,%rdi
-callq  a09 <_Z9mergeSortPiii>
-lea    0xcc(%rip),%rdi        
-callq  5f0 <puts@plt>
+callq  4008f5 <_Z9mergeSortPiii>
+mov    $0x400b18,%edi
+callq  4004e0 <puts@plt>
 mov    -0x24(%rbp),%edx
 lea    -0x20(%rbp),%rax
 mov    %edx,%esi
 mov    %rax,%rdi
-callq  a7f <_Z10printArrayPii>
+callq  40096b <_Z10printArrayPii>
 mov    $0x0,%eax
 mov    -0x8(%rbp),%rcx
 xor    %fs:0x28,%rcx
-je     b8b <main+0xb2>
-callq  600 <__stack_chk_fail@plt>
+je     400a72 <main+0xaf>
+callq  4004f0 <__stack_chk_fail@plt>
 leaveq 
 retq   
-nopl   (%rax)
+nopw   %cs:0x0(%rax,%rax,1)
+xchg   %ax,%ax
 <__libc_csu_init>:
 push   %r15
 push   %r14
-mov    %rdx,%r15
+mov    %edi,%r15d
 push   %r13
 push   %r12
-lea    0x2011fe(%rip),%r12        
+lea    0x20037e(%rip),%r12        
 push   %rbp
-lea    0x2011fe(%rip),%rbp        
+lea    0x20037e(%rip),%rbp        
 push   %rbx
-mov    %edi,%r13d
 mov    %rsi,%r14
+mov    %rdx,%r13
 sub    %r12,%rbp
 sub    $0x8,%rsp
 sar    $0x3,%rbp
-callq  5b8 <_init>
+callq  400498 <_init>
 test   %rbp,%rbp
-je     be6 <__libc_csu_init+0x56>
+je     400ad6 <__libc_csu_init+0x56>
 xor    %ebx,%ebx
 nopl   0x0(%rax,%rax,1)
-mov    %r15,%rdx
+mov    %r13,%rdx
 mov    %r14,%rsi
-mov    %r13d,%edi
+mov    %r15d,%edi
 callq  *(%r12,%rbx,8)
 add    $0x1,%rbx
-cmp    %rbx,%rbp
-jne    bd0 <__libc_csu_init+0x40>
+cmp    %rbp,%rbx
+jne    400ac0 <__libc_csu_init+0x40>
 add    $0x8,%rsp
 pop    %rbx
 pop    %rbp
