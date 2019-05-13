@@ -6,8 +6,8 @@ import os
 import numpy as np
 
 def main():
-    dir = "source/cpp_examples/dynamic_only_no_library/"
-    d, keys, clusters = get_ngrams(dir, "_dynamic_nol", n=8)
+    dir = "source/cpp_examples/assembly/"
+    d, keys, clusters = get_ngrams(dir, "static_small", n=8)
 
     docs = []
     for doc in d:
@@ -23,7 +23,7 @@ def main():
     alpha = 10.0           # smoothing over level distributions/
     gamma = 1.0           # CRP smoothing parameter; number of imaginary customers at next, as yet unused table
     eta = 0.1             # smoothing over topic-word distributions
-    num_levels = 4        # the number of levels in the tree
+    num_levels = 5        # the number of levels in the tree
     display_topics = 50   # the number of iterations between printing a brief summary of the topics so far
     n_words = 5           # the number of most probable words to print for each topic after model estimation
     with_weights = True

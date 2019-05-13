@@ -15,8 +15,8 @@ import pyLDAvis.sklearn
 import matplotlib.pyplot as plt
 
 def main():
-    dir = "source/cpp_examples/dynamic_only_no_library/"
-    d, keys, clusters = get_ngrams(dir, "_dynamic_nol", n=8)
+    dir = "source/cpp_examples/assembly/"
+    d, keys, clusters = get_ngrams(dir, "static_small", n=8)
     print(len(d))
 
     docs = []
@@ -32,7 +32,7 @@ def main():
     for w in word_id:
         id2word[word_id[w]] = w
 
-    n_topics = 13
+    n_topics = 10
     #n_topics = 23
     corpus = gensim.matutils.Dense2Corpus(X)
     print('Corpus Done')
@@ -52,12 +52,12 @@ def main():
         print('Topic {}: \n{}'.format(i, '\n'.join(topic_words)))
         topic_list.append(topic_words)
         k = np.sort(topic_dist)[:-(n_top_words+1):-1]
-        #print(sum(k), k)
+        print(k)
         print(" ")
 
 
     doc_topic = model.transform(X)
-    n_top_topics = 3
+    n_top_topics = 5
     for i in range(doc_topic.shape[0]):
         fn = docs[i][0].getFilename()
         if "sort" in fn or "search" in fn:
@@ -71,9 +71,10 @@ def main():
             print(" ")
 
 
-
+    """
     for k in sorted(clusters.keys(), key=lambda x: int(x)):
         print(k, clusters[k])
+    """
 
 
 
