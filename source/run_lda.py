@@ -1,42 +1,36 @@
 from util.file_loader import FileLoader
 from pandas import DataFrame
 from get_ngrams import get_ngrams
-from gensim.models import LdaMulticore
-from sklearn.decomposition import LatentDirichletAllocation, TruncatedSVD
-from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
-from sklearn.model_selection import GridSearchCV
-from pprint import pprint
 import os
 import gensim
 import numpy as np
 import guidedlda as gl
-import pyLDAvis
-import pyLDAvis.sklearn
 import matplotlib.pyplot as plt
 
-def main():
-    dir = "source/cpp_examples/assembly/"
-    d, keys, clusters = get_ngrams(dir, "static_small", n=8)
-    print(len(d))
+subs, dir = "static_small", "source/cpp_examples/assembly/"
+#subs, dir = "static_large", "source/cpp_examples/assembly/"
+#subs, dir = "dynamic", "source/cpp_examples/dynamic_only/"
+#subs, dir = "dynamic_nol", "source/cpp_examples/dynamic_only_no_library/"
 
-    docs = []
-    for doc in d:
-        if "sort" in doc[0].getFilename() or "search" in doc[0].getFilename():
-            docs.append(doc)
+def main():
+    subs, dir = "static_small", "source/cpp_examples/assembly/"
+    d, keys, clusters = get_ngrams(dir, subs, n=8, use_pickle=False)
+
+    docs = d
 
     X, vocab, word_id = construct_x(docs)
+
     for i in range(len(vocab)):
         vocab[i] = convert_clust_to_term(vocab[i], clusters)
-    print(len(clusters.keys()))
+
     id2word = {}
     for w in word_id:
         id2word[word_id[w]] = w
 
-    n_topics = 10
-    #n_topics = 23
+    n_topics = 13
     corpus = gensim.matutils.Dense2Corpus(X)
     print('Corpus Done')
-    #model = LdaMulticore(corpus, id2word=id2word, workers=3, passes=100, alpha=0.1, eta=0.1)
+
     # low alpha is few words per topic
     # low eta is few topics per document
     al = 0.00000001
@@ -44,9 +38,10 @@ def main():
     model = gl.GuidedLDA(n_topics=n_topics, n_iter=100, random_state=7, refresh=20, alpha=al, eta=0.1)
     model.fit(X)
     topic_word = model.topic_word_
-    #topic_word = model.get_topics()
     n_top_words = 3
     topic_list = []
+
+    # Print topics
     for i, topic_dist in enumerate(topic_word):
         topic_words = np.array(vocab)[np.argsort(topic_dist)][:-(n_top_words+1):-1]
         print('Topic {}: \n{}'.format(i, '\n'.join(topic_words)))
@@ -58,6 +53,8 @@ def main():
 
     doc_topic = model.transform(X)
     n_top_topics = 5
+
+    # Print Documents
     for i in range(doc_topic.shape[0]):
         fn = docs[i][0].getFilename()
         if "sort" in fn or "search" in fn:
@@ -71,15 +68,12 @@ def main():
             print(" ")
 
 
-    """
+    # Print clusters
     for k in sorted(clusters.keys(), key=lambda x: int(x)):
         print(k, clusters[k])
-    """
 
 
-
-
-
+# Construct frequency matrix, vocab list, and word-id dict
 def construct_x(d):
     uni = set()
     docs = []
@@ -107,13 +101,14 @@ def construct_x(d):
 
     return X, vocab, word_to_id
 
+# Converts cluster id to term(s)
 def convert_clust_to_term(gram, clust):
     terms = gram.split()
     for i in range(len(terms)):
         t = int(terms[i])
-        if len(clust[t]) == 1:
+        if len(clust[t]) == 1: # 1 term
             terms[i] = clust[t][0]
-        elif len(clust[t]) == 2:
+        elif len(clust[t]) == 2: # 2 terms
             terms[i] = "/".join(clust[t][:2])
     return " ".join(terms)
 

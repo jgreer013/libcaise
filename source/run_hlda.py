@@ -5,9 +5,13 @@ from get_ngrams import get_ngrams
 import os
 import numpy as np
 
+subs, dir = "static_small", "source/cpp_examples/assembly/"
+#subs, dir = "static_large", "source/cpp_examples/assembly/"
+#subs, dir = "dynamic", "source/cpp_examples/dynamic_only/"
+#subs, dir = "dynamic_nol", "source/cpp_examples/dynamic_only_no_library/"
+
 def main():
-    dir = "source/cpp_examples/assembly/"
-    d, keys, clusters = get_ngrams(dir, "static_small", n=8)
+    d, keys, clusters = get_ngrams(dir, subs, n=8, use_pickle=False)
 
     docs = []
     for doc in d:

@@ -2,6 +2,7 @@ from .data_reader import DataReader as bd
 from .data_file import DataFile
 import os
 
+# General wrapper for loaded files
 class FileLoader:
     def __init__(self, use_clust = False, clust_name = "clusters.txt"):
         self.filenames = []
@@ -36,7 +37,6 @@ class FileLoader:
                     c[clus] = []
 
                 c[clus].append(term)
-
 
         return k, c
 

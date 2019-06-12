@@ -1,6 +1,7 @@
 import numpy as np
 from .data_file import DataFile as DF
 
+# General class for reading in data from file
 class DataReader:
     def __init__(self, data_file=None, dtype=bool):
         self.type = dtype
