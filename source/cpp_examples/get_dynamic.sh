@@ -8,7 +8,8 @@ do
   echo ./dynamic/$f2
   rm ./dynamic/$f2
   gdb $f < run.gdb > ./dynamic/$f2
-  
+
 done
 
 ./strip_dyn.asm.sh
+python strip_library_calls.py
