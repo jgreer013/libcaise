@@ -1,7 +1,6 @@
 from util.file_loader import FileLoader
 from pandas import DataFrame
 from get_ngrams import get_ngrams
-from gensim.models import LdaMulticore
 import os
 import gensim
 import numpy as np
