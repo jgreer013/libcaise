@@ -32,10 +32,10 @@ def write_clusters(subscript, clusters, vocab):
     f.close()
 
 # Create cluster plots
-def plot_clusters(X, labels):
+def plot_clusters(X, labels, cut_point=0.01):
     #cut_point = 0.1 # Dynamic no library
     #cut_point = 2 # Dynamic
-    cut_point = 0.01 # Static Small
+    #cut_point = 0.01 # Static Small
     plt.figure(figsize=(10,7))
     Z = linkage(X, method='ward', metric='euclidean')
     dend = dendrogram(Z, labels=labels)
