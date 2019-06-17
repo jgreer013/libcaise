@@ -8,5 +8,7 @@ do
   echo ./dynamic/$f2
   rm ./dynamic/$f2
   gdb $f < run.gdb > ./dynamic/$f2
-  #grep -Po "$s2" > ./assembly/$f2
+  
 done
+
+./strip_dyn.asm.sh

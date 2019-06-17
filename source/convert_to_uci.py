@@ -6,19 +6,22 @@ import os
 import gensim
 import numpy as np
 
+subs, dir = "static_small", "source/cpp_examples/assembly/"
+#subs, dir = "static_large", "source/cpp_examples/assembly/"
+#subs, dir = "dynamic", "source/cpp_examples/dynamic_only/"
+#subs, dir = "dynamic_nol", "source/cpp_examples/dynamic_only_no_library/"
+
 def main():
-    fn = "assembly"
+    fn = subs
     dir = "source/cpp_examples/assembly/"
     n = 8
-    d, keys, clusters = get_ngrams(dir, n=n)
+    d, keys, clusters = get_ngrams(dir, subs, n=n, use_pickle=False)
     print(len(d))
     with open("docs" + str(n) + "." + fn + ".txt", 'w') as f:
         for i in range(len(d)):
             doc = d[i][1]
             f.write(" ".join(["_".join(x.split(" ")) for x in doc]))
             f.write("\n")
-
-    return
 
     X, vocab, word_id = construct_x(d)
     id2word = {}

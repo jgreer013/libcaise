@@ -7,16 +7,12 @@ def main():
   new_dir = "./dynamic_only_no_library/"
   files = os.listdir(static_dir)
   search_sort = []
-  
-  #p = re.compile("(<[^>]+>:)")
-  #test_regex(p, "=> 0x4006df <main+149>:	mov    $0x0,%eax")
-  #return
-  
+
   for f in files:
     if "search" in f or "sort" in f:
       if "only" not in f:
         search_sort.append(f)
-      
+
   for fn in search_sort:
     f = open(static_dir + fn, "r")
     bname = fn.replace("_assembly.txt", "")
@@ -27,16 +23,13 @@ def main():
     fd = open(dyn_dir + dname, "r")
     lines = strip_dyn(fd, funcs)
     fd.close()
-    
+
     fnew = open(new_dir + bname + "_dynamic_only.txt", 'w+')
     for l in lines:
       fnew.write(l + "\n")
     fnew.close()
-    
-def test_regex(r, s):
-  print(s)
-  print(r.match(s))
-  
+
+
 def find_functions(f):
   funcs = []
   lines = f.read().splitlines()
@@ -60,10 +53,8 @@ def strip_dyn(f, funcs):
       if plus != -1:
         carot = t.find(">")
         t = t[:plus] + t[carot:-1]
-      
+
       if t in funcs:
-        #print(t)
-        #print(l)
         tb = l.find('\t')
         k = l[tb:]
         if len(k) == 1:
@@ -72,11 +63,8 @@ def strip_dyn(f, funcs):
           k = k.strip()
         k = k.split(" ")[0]
         newlines.append(k)
-  
+
   return newlines
- 
+
 
 main()
-
-
-
