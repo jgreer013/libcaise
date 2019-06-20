@@ -1,6 +1,6 @@
 import os
 
-
+# Gets the top n topics
 def get_top_topics(n, dir, fn):
     file_name = dir + fn
     doc_top_topics = {}
@@ -17,6 +17,7 @@ def get_top_topics(n, dir, fn):
                 doc_top_topics[doc] = [(top, topics[top]) for top in sorted(topics.keys(), key=lambda x: topics[x], reverse=True)[:n]]
     return doc_top_topics
 
+# Gets the top n terms
 def get_top_terms(n, dir, fn):
     file_name = dir + fn
     topic_top_terms = {}
@@ -40,6 +41,7 @@ def get_top_terms(n, dir, fn):
 
     return topic_top_terms
 
+# Get dictionary of id->term
 def get_term_dict(dir, fn):
     file_name = dir + fn
     term_dict = {}
@@ -61,6 +63,7 @@ def get_term_dict(dir, fn):
 
     return term_dict
 
+# Get names of documents
 def get_doc_names(dir):
     files = os.listdir(dir)
     doc_names = []
@@ -69,6 +72,7 @@ def get_doc_names(dir):
             doc_names.append(f)
     return doc_names
 
+# Get clusters from file
 def get_clusters():
     fn = "clusters_full.txt"
     clus = {}
