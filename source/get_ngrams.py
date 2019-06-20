@@ -5,12 +5,14 @@ import numpy as np
 from nltk.util import ngrams
 import pickle
 
+# Ngram data class storing data, dictionary, and keys
 class Ngram_data:
     def __init__(self, d, c, k):
         self.d = d
         self.clust = c
         self.keys = k
 
+# Load files based on a certain subscript and directory
 def load_files(subsc, dir):
     fl = FileLoader(use_clust=True, clust_name = "clusters_" + subsc + ".txt")
     files = os.listdir(dir)
@@ -24,6 +26,7 @@ def load_files(subsc, dir):
     d = fl.getData(type=np.dtype('unicode_'))
     return d, fl.clusters, fl.key
 
+# Get ngrams from files
 def get_ngrams(dir, subscript, n=3, use_pickle=True):
     if use_pickle:
         try:

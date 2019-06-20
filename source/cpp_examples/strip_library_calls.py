@@ -2,16 +2,23 @@ import os
 import re
 
 def main():
+  # Static directory contains objdumps for the function tag
   static_dir = "./assembly/"
+
+  # Dynamic contains the pure dynamic traces
   dyn_dir = "./dynamic/"
+
+  # New directory to write filtered results to
   new_dir = "./dynamic_only_no_library/"
   files = os.listdir(static_dir)
   search_sort = []
 
+  # Get only searching or sorting files from static (no dynamics of others available)
   for f in files:
     if "search" in f or "sort" in f:
       if "only" not in f:
         search_sort.append(f)
+
 
   for fn in search_sort:
     f = open(static_dir + fn, "r")
@@ -29,7 +36,7 @@ def main():
       fnew.write(l + "\n")
     fnew.close()
 
-
+# Find all function tags in static file
 def find_functions(f):
   funcs = []
   lines = f.read().splitlines()
@@ -39,7 +46,7 @@ def find_functions(f):
       funcs.append(l[:-1])
   return funcs
 
-
+# Keep only those commands with a function tag contained in funcs
 def strip_dyn(f, funcs):
   newlines = []
   lines = f.read().splitlines()

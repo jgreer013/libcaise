@@ -23,6 +23,7 @@ class FileLoader:
     def getFile(self, ind):
         return self.filenames.get(ind)
 
+    # Load clusters from file
     def loadClusters(self):
         fn = self.clust_name
         k = {}
@@ -40,6 +41,7 @@ class FileLoader:
 
         return k, c
 
+    # Returns a list of [DataFile, data]
     def getData(self, type=bool):
         d = []
         b = bd()

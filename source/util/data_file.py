@@ -1,3 +1,4 @@
+# Class to contain information about files
 class DataFile:
     def __init__(self, dir, filename):
         self.dir = dir
