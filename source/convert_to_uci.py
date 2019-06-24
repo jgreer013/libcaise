@@ -42,7 +42,7 @@ def main():
 
 
 
-
+# Convert data to correct representation, and get vocabulary and word ids
 def construct_x(d):
     uni = set()
     docs = []

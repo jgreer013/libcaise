@@ -31,8 +31,8 @@ def main():
     corpus = gensim.matutils.Dense2Corpus(X)
     print('Corpus Done')
 
-    # low alpha is few words per topic
-    # low eta is few topics per document
+    # low alpha means you want few words per topic
+    # low eta means you want few topics per document
     al = 0.00000001
     #al = 0.1
     model = gl.GuidedLDA(n_topics=n_topics, n_iter=100, random_state=7, refresh=20, alpha=al, eta=0.1)

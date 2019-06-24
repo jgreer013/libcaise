@@ -41,6 +41,7 @@ def main():
     for doc in sorted(leaves.keys(), key=lambda x:leaves[x].node_id):
         print("\t", leaves[doc].node_id, "\t", docs[doc][0].getFilename())
 
+# Organize dataset into corpus (list of lists containing term ids)
 def construct_corpus(d):
     uni = set()
     docs = []
@@ -58,6 +59,8 @@ def construct_corpus(d):
 
     return corpus, vocab, word_to_id
 
+# Convert the terms in n-gram to actual commands
+# Only done if the command is in a cluster alone
 def convert_clust_to_term(gram, clust):
     terms = gram.split()
     for i in range(len(terms)):
