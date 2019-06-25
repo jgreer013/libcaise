@@ -3,7 +3,7 @@ Learning Interpretable Behavioral Components from Assembly Instructions of Softw
 
 This repo contains all work and code associated with the LIBCAISE system. All python code should be cross-platform, but the shell scripts have only been tested on Ubuntu and so will probably only work on Linux. All searching and sorting programs were taken from geeksforgeeks.org as c++ files. 
 
-##Dependencies:
+## Dependencies:
 * Python3
 * guidedlda
 * numpy
@@ -17,7 +17,7 @@ This repo contains all work and code associated with the LIBCAISE system. All py
 
 All dependencies should be installable via pip, and most may already be installed if using Anaconda.
 
-##Usage:
+## Usage:
 * `python run_lda.py` runs lda on the dataset listed in the file
 * `python run_hlda.py` works similarly but for hierarchical LDA
 * `python cluster_asm.py` will generate clusters for the files listed in the directory provided. Note that the cutting point needs to be manually defined by the user.
@@ -27,7 +27,7 @@ All dependencies should be installable via pip, and most may already be installe
 
 In addition, `read_light_lda_files.py` in the `util` directory can be run to visualize the results from lightLDA in a manner similar to guidedlda.
 
-##LightLDA
+## LightLDA
 The files `convert_to_uci.pi` and `read_light_lda_files.py` are the files to be utilized with LightLDA. Installation instructions for LightLDA can be found here: https://github.com/microsoft/LightLDA
 
 Note that you may encounter some issues during the installation of it and its dependencies, but the issue list for LightLDA should help with that.
