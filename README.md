@@ -41,6 +41,7 @@ LightLDA is described as both multi-threaded and parallelizable, but I haven't t
 ## Citation
 Please cite the following when referring to this repository:
 
+```
 @mastersthesis{jgreer2019,
   author       = {Jeremiah Greer}, 
   title        = {Unsupervised Interpretable Feature Extraction for Binary Executables using LIBCAISE},
@@ -50,3 +51,4 @@ Please cite the following when referring to this repository:
   month        = 7,
   note         = {Thesis will be available on OhioLink}
 }
+```
