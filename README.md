@@ -37,3 +37,16 @@ Once LightLDA is installed and built, one must use the `convert_to_uci.py` file 
 Once you have files in the UCI format, you'll need to transfer the files to an appropriate place in the LightLDA directory. Once it's finished, LightLDA will generate some files containing probability distribution tables, which can then be copied back over to the libcaise directory and read using the `read_light_lda_files.py` file. This file will display results similarly to the `run_lda.py` file.
 
 LightLDA is described as both multi-threaded and parallelizable, but I haven't tested running it on multiple computers, so I can't attest to how that would work, but there are instructions included in the LightLDA repo
+
+## Citation
+Please cite the following when referring to this repository:
+
+@mastersthesis{jgreer2019,
+  author       = {Jeremiah Greer}, 
+  title        = {Unsupervised Interpretable Feature Extraction for Binary Executables using LIBCAISE},
+  school       = {University of Cincinnati},
+  year         = 2019,
+  Address = {OhioLink}
+  month        = 7,
+  note         = {Thesis will be available on OhioLink}
+}
