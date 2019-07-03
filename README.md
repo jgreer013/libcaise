@@ -32,7 +32,7 @@ The files `convert_to_uci.pi` and `read_light_lda_files.py` are the files to be 
 
 Note that you may encounter some issues during the installation of it and its dependencies, but the issue list for LightLDA should help with that.
 
-Once LightLDA is installed and built, one must use the `convert_to_uci.py` file to generate files in the correct format used by LightLDA (if you already have files in the UCI format then you shoudl be fine.
+Once LightLDA is installed and built, one must use the `convert_to_uci.py` file to generate files in the correct format used by LightLDA (if you already have files in the UCI format then you should be fine).
 
 Once you have files in the UCI format, you'll need to transfer the files to an appropriate place in the LightLDA directory. Once it's finished, LightLDA will generate some files containing probability distribution tables, which can then be copied back over to the libcaise directory and read using the `read_light_lda_files.py` file. This file will display results similarly to the `run_lda.py` file.
 
