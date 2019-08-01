@@ -1,5 +1,7 @@
 s1="((?<= \t)([^#\n ]*)( *)([^#\n]*))|((?=.)<(.*)>:)"
 s2="((?<= \t)([^#\n ]*))"
+mkdir dynamic
+
 # For file in /bin/
 for f in ./bin/*.b
 do
