@@ -18,12 +18,12 @@ This repo contains all work and code associated with the LIBCAISE system. All py
 All dependencies should be installable via pip, and most may already be installed if using Anaconda.
 
 ## Usage:
-* `python run_lda.py` runs lda on the dataset listed in the file
-* `python run_hlda.py` works similarly but for hierarchical LDA
-* `python cluster_asm.py` will generate clusters for the files listed in the directory provided. Note that the cutting point needs to be manually defined by the user.
-* `python convert_to_uci.py` will convert the data to the UCI format utilized by LightLDA
-* `./get_static.sh` will collect the static assemblies of the binary files in the `/bin/` directory
-* `./get_dynamic.sh` will collect the dynamic assemblies of the binary files in the `bin/` directory
+* `python run_lda.py` (`source` directory) runs lda on the dataset listed in the file
+* `python run_hlda.py` (`source` directory) works similarly but for hierarchical LDA
+* `python cluster_asm.py` (`source` directory) will generate clusters for the files listed in the directory provided. Note that the cutting point needs to be manually defined by the user.
+* `python convert_to_uci.py` (`source` directory) will convert the data to the UCI format utilized by LightLDA
+* `./get_static.sh` (`source/cpp_examples` directory) will collect the static assemblies of the binary files in the `/bin/` directory
+* `./get_dynamic.sh` (`source/cpp_examples` directory) will collect the dynamic assemblies of the binary files in the `bin/` directory
 
 In addition, `read_light_lda_files.py` in the `util` directory can be run to visualize the results from lightLDA in a manner similar to guidedlda.
 
